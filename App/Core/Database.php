@@ -16,10 +16,10 @@ class Database
         $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->dbname;
         $options = array(
             PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
         $this->dbh = new PDO($dsn, $this->user, $this->password, $options);
-
     }
     public static function getInstance()
     {
