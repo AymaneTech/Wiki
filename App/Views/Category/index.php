@@ -80,7 +80,7 @@
         </div>
     </div>
 </main>
-<!-- end: Main -->
+
 
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="<?= APP_URL ?>/public/assets/js/dashboard.js"></script>
