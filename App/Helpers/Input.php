@@ -14,7 +14,7 @@ class Input
     {
         $errors = [];
         $data = [];
-        unset($_POST["saveCategory"]);
+        unset($_POST["postCategory"]);
         foreach ($_POST as $key => $value) {
             if (empty($value)) {
                 $errors[] = $key . ' is required';

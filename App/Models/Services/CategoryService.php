@@ -14,6 +14,10 @@ class CategoryService
         $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["categoryImage"]);
         $this->category->saveCategory($categoryEntity);
     }
+    public function updateCategory($category){
+        $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["categoryImage"], $category["categoryId"]);
+        $this->category->updateCategory($categoryEntity);
+    }
     public function getCategories()
     {
         $array = [];
@@ -29,5 +33,11 @@ class CategoryService
         $categoryEntity->__set("categoryId", $id);
         $this->category->deleteCategory($categoryEntity);
     }
+    public function findById($id){
+        $categoryEntity = new categoryEntity();
+        $categoryEntity->__set("categoryId", $id);
+        return $this->category->findById($categoryEntity);
+    }
+
 
 }

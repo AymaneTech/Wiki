@@ -49,5 +49,28 @@ abstract class Model
             die("error in deleting" . $e->getMessage());
         }
     }
+    public function update ($data, $condition){
+        try{
+            $placeholders = implode('=?, ', array_keys($data)) . '=?';
+            foreach($condition as $item => $value){
+                $whereClause = $item. " = ?";
+            }
+            $query = "UPDATE {$this->tableName} SET {$placeholders} WHERE {$whereClause}";
+            $stmt = $this->dbh->prepare($query);
+            $values = array_merge(array_values($data), array_values($condition));
+            $stmt->execute($values);
+        }catch(PDOException $e){
+            die("error in selecting" . $e->getMessage());
+        }
+    }
+    public function findByColumn($column, $value){
+        try  {
+            $stmt = $this->dbh->prepare("SELECT * FROM {$this->tableName} WHERE {$column} = ?");
+            $stmt->execute([$value]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }catch (PDOException $e){
+            die("error in deleting" . $e->getMessage());
+        }
+    }
 
 }

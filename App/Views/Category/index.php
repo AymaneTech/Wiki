@@ -62,7 +62,12 @@
                                 </td>
                                 <td class="py-2 px-4 border-b border-b-gray-300">
                                     <div class="flex items-center gap-4">
-                                        <i class='bx bxs-edit' style='color:#0c72cf'></i>
+                                        <form action="<?= APP_URL ?>categories/edit" method="post">
+                                            <input type="hidden" name="editId" value="<?= $category->categoryId ?>">
+                                            <button type="submit">
+                                                <i class='bx bxs-edit' style='color:#0c72cf'></i>
+                                            </button>
+                                        </form>
                                         <form action="<?= APP_URL ?>categories/delete" method="post">
                                             <input type="hidden" name="deleteId" value="<?= $category->categoryId ?>">
                                             <button type="submit">
@@ -80,7 +85,6 @@
         </div>
     </div>
 </main>
-
 
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="<?= APP_URL ?>/public/assets/js/dashboard.js"></script>
