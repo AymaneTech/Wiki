@@ -10,11 +10,11 @@ class Input
         return file_get_contents($tmp);
     }
 
-    public static function filterInput($post, $file)
+    public static function filterInput($post, $file = null)
     {
         $errors = [];
         $data = [];
-        unset($_POST["postCategory"]);
+        unset($_POST["postRequest"]);
         foreach ($_POST as $key => $value) {
             if (empty($value)) {
                 $errors[] = $key . ' is required';
@@ -23,7 +23,9 @@ class Input
                 $data[$key] = $value;
             }
         }
-        $data["categoryImage"] = self::getImage($file);
+        if (!($file == null)) {
+            $data["image"] = self::getImage($file);
+        }
         if (!empty($errors)) {
             return $errors;
         }

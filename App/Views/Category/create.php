@@ -27,7 +27,7 @@
             <p class="my-4 text-center text-red-700">
                 <?= !(empty($data)) ? $data : "" ?>
             </p>
-            <button name="postCategory"
+            <button name="postRequest"
                     class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
                 Add Category
             </button>

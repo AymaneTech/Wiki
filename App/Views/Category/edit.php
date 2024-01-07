@@ -27,7 +27,7 @@
                        required>
             </div>
             <input id="categoryId" name="categoryId" type="hidden" value="<?=$data->categoryId?>">
-            <button name="postCategory"
+            <button name="postRequest"
                     class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
                 Update Category
             </button>

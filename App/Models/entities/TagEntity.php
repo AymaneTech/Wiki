@@ -5,7 +5,7 @@ class TagEntity
 {
     private $tagId;
     private $tagName;
-    public function __construct($tagId = null, $tagName = ""){
+    public function __construct($tagName = "", $tagId = null){
         $this->tagId = $tagId;
         $this->tagName = $tagName;
     }

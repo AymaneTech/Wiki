@@ -29,7 +29,7 @@ class Categories extends Controller
 
     public function save()
     {
-        if (isset($_POST["postCategory"])) {
+        if (isset($_POST["postRequest"])) {
             $result = Input::filterInput($_POST, $_FILES["categoryImage"]);
             if (!empty($result[0])) {
                 $this->view("Category/create", $result);
@@ -47,7 +47,7 @@ class Categories extends Controller
         }
     }
     public function update (){
-        if(isset($_POST["postCategory"])){
+        if(isset($_POST["postRequest"])){
             $result = Input::filterInput($_POST, $_FILES["categoryImage"]);
             if (!empty($result[0])) {
                 $this->view("Category/edit", $result);

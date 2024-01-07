@@ -11,11 +11,11 @@ class CategoryService
         $this->category = new Category();
     }
     public function saveCategory($category){
-        $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["categoryImage"]);
+        $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["image"]);
         $this->category->saveCategory($categoryEntity);
     }
     public function updateCategory($category){
-        $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["categoryImage"], $category["categoryId"]);
+        $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["image"], $category["categoryId"]);
         $this->category->updateCategory($categoryEntity);
     }
     public function getCategories()
