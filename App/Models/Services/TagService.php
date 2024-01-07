@@ -12,7 +12,15 @@ class TagService
     }
     public function saveTag($tag){
         $tagEntity = new TagEntity($tag["tagName"]);
-
         $this->tag->saveTag($tagEntity);
+    }
+    public function getTags(){
+        $array = [];
+        $categories = $this->tag->getAllTags();
+        foreach($categories as $tag){
+            $tagEntity = new TagEntity($tag->tagName, $tag->tagId);
+            $array[] = $tagEntity;
+        }
+        return $array;
     }
 }

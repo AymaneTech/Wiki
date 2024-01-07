@@ -13,14 +13,15 @@ class Tags extends Controller
         $this->tagService = $this->model("TagService");
     }
     public function index(){
-        $this->view("Tag/index");
+        $data = $this->tagService->getTags();
+//        Functions::dd($data);
+        $this->view("Tag/index", $data);
     }
     public function create (){
         if(isset($_POST["postRequest"])){
             $result = Input::filterInput($_POST);
             $this->tagService->saveTag($result);
             header("Location: " . APP_URL . "Tags");
-
         }
     }
 }
