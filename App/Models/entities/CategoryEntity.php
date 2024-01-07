@@ -6,7 +6,8 @@ class CategoryEntity
     private $categoryName;
     private $categoryDescription;
     private $categoryImage;
-    public function __construct($categoryName = "", $categoryDescription = "", $categoryImage = null){
+    public function __construct($categoryName = "", $categoryDescription = "", $categoryImage = null, $categoryId = null){
+        $this->categoryId = $categoryId;
         $this->categoryName = $categoryName;
         $this->categoryDescription = $categoryDescription;
         $this->categoryImage = $categoryImage;

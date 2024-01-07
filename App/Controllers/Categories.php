@@ -6,8 +6,14 @@ use App\Helpers\Input;
 use App\Helpers\Functions;
 class Categories extends Controller
 {
+    private $categoryService;
+    public function __construct(){
+        $this->categoryService = $this->model("CategoryService");
+    }
     public function index(){
-        $this->view("Category/index");
+
+        $data = $this->categoryService->getCategories();
+        $this->view("Category/index", $data);
     }
     public function create (){
         $this->view("Category/create");
@@ -17,9 +23,9 @@ class Categories extends Controller
             $result = Input::filterInput($_POST, $_FILES["categoryImage"]);
             if(!empty($result[0])){
                 $this->view("Category/create", $result[0]);
+                exit();
             }
-            $categoryService = $this->model("CategoryService");
-            $categoryService->saveCategory($result);
+            $this->categoryService->saveCategory($result);
             header("Location: ". APP_URL."categories");
 //            $this->index();
         }

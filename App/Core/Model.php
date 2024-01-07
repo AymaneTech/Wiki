@@ -4,6 +4,7 @@ namespace App\Core;
 
 use App\Core\Database;
 use PDOException;
+use PDO;
 
 abstract class Model
 {
@@ -23,7 +24,7 @@ abstract class Model
         try {
             $columns = implode(',', $this->columns);
             $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName}");
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             die("error in selecting" . $e->getMessage());
         }

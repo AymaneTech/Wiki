@@ -13,7 +13,16 @@ class CategoryService
     public function saveCategory($category){
         $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["categoryImage"]);
         $this->category->saveCategory($categoryEntity);
-
+    }
+    public function getCategories()
+    {
+        $array = [];
+        $categories = $this->category->getAllCategories();
+        foreach($categories as $category){
+            $categoryEntity = new CategoryEntity($category->categoryName, $category->categoryDescription, $category->categoryImage, $category->categoryId);
+            $array[] = $categoryEntity;
+        }
+        return $array;
     }
 
 }

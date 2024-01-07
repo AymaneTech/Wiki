@@ -19,4 +19,7 @@ class Category extends Model
         $data["categoryImage"] = $category->__get("categoryImage");
         $this->save($data);
     }
+    public function getAllCategories(){
+        return  $this->getAll();
+    }
 }
