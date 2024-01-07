@@ -23,4 +23,22 @@ class Tag extends Model
     {
         return $this->getAll();
     }
+    public function deleteTag(TagEntity $tagEntity)
+    {
+        $id = $tagEntity->__get("tagId");
+        $this->delete('tagId' ,$id);
+    }
+
+    public function findById(TagEntity $tagEntity)
+    {
+        $id = $tagEntity->__get("tagId");
+        $result = $this->findByColumn("tagId", $id);
+        return $result[0];
+    }
+    public function updateTag(TagEntity $tagEntity)
+    {
+        $condition = ["tagId" => $tagEntity->__get("tagId")];
+        $data["tagName"] = $tagEntity->__get("tagName");
+        $this->update($data, $condition);
+    }
 }

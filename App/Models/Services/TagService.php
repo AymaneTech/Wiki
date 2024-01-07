@@ -23,4 +23,18 @@ class TagService
         }
         return $array;
     }
+    public function deleteTag($id){
+        $tagEntity = new tagEntity();
+        $tagEntity->__set("tagId", $id);
+        $this->tag->deleteTag($tagEntity);
+    }
+    public function findById($id){
+        $tagEntity = new tagEntity();
+        $tagEntity->__set("tagId", $id);
+        return $this->tag->findById($tagEntity);
+    }
+    public function updateTag($tag){
+        $tagEntity = new TagEntity($tag["tagName"], $tag["tagId"]);
+        $this->tag->updateTag($tagEntity);
+    }
 }

@@ -15,7 +15,7 @@ class wikiTagEntity
         else die ($property . " property does not exist");
     }
     public function __set($property, $value){
-        if (property_exists($this, $property)) $this->$property;
+        if (property_exists($this, $property)) $this->$property = $value;
         else die ($property . " property does not exist");
     }
 
