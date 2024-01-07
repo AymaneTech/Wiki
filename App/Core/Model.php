@@ -5,6 +5,7 @@ namespace App\Core;
 use App\Core\Database;
 use PDOException;
 use PDO;
+use App\Helpers\Functions;
 
 abstract class Model
 {
@@ -40,4 +41,13 @@ abstract class Model
             die("error in selecting" . $e->getMessage());
         }
     }
+    protected function delete($column, $value){
+        try  {
+            $stmt = $this->dbh->prepare("DELETE FROM {$this->tableName} WHERE {$column} = ?");
+            $stmt->execute([$value]);
+        }catch (PDOException $e){
+            die("error in deleting" . $e->getMessage());
+        }
+    }
+
 }

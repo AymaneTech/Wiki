@@ -22,4 +22,8 @@ class Category extends Model
     public function getAllCategories(){
         return  $this->getAll();
     }
+    public function deleteCategory(CategoryEntity $category){
+        $id = $category->__get("categoryId");
+        $this->delete("categoryId", $id);
+    }
 }

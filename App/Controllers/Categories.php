@@ -27,7 +27,12 @@ class Categories extends Controller
             }
             $this->categoryService->saveCategory($result);
             header("Location: ". APP_URL."categories");
-//            $this->index();
+        }
+    }
+    public function delete(){
+        if(isset($_POST["deleteId"])){
+            $this->categoryService->deleteCategory($_POST["deleteId"]);
+            header("Location: ". APP_URL."categories");
         }
     }
 }

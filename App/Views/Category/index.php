@@ -63,9 +63,12 @@
                                 <td class="py-2 px-4 border-b border-b-gray-300">
                                     <div class="flex items-center gap-4">
                                         <i class='bx bxs-edit' style='color:#0c72cf'></i>
-                                        <button onclick="deleteCategory(<?=$category->categoryId?>)" id="deleteCategory" type="button">
-                                            <i class='bx bxs-edit'></i>
-                                        </button>
+                                        <form action="<?= APP_URL ?>categories/delete" method="post">
+                                            <input type="hidden" name="deleteId" value="<?= $category->categoryId ?>">
+                                            <button type="submit">
+                                                <i class='bx bxs-edit'></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

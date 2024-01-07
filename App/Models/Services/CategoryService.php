@@ -24,5 +24,10 @@ class CategoryService
         }
         return $array;
     }
+    public function deleteCategory($id){
+        $categoryEntity = new categoryEntity();
+        $categoryEntity->__set("categoryId", $id);
+        $this->category->deleteCategory($categoryEntity);
+    }
 
 }
