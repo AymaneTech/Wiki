@@ -28,16 +28,13 @@ abstract class Model
             die("error in selecting" . $e->getMessage());
         }
     }
-    protected function Create($object){
+    protected function save($data){
         try{
-            $columns = implode(',', array_keys(get_object_vars($object)));
-            $placeholders = implode(',', array_fill(0, count(get_object_vars($object)), '?'));
-            $stmt = $this->dbh->prepare("INSERT INTO {$this->tableName} ({$columns}) values ($placeholders)");
-            $i = 1;
-            foreach (get_object_vars($object) as $value){
-                $stmt->bindValue($i++, $value);
-            }
-            $stmt->execute();
+            $columns = implode(',', array_keys($data));
+            $placeholders = implode(',', array_fill(0, count($data), '?'));
+            $query = "INSERT INTO {$this->tableName} ({$columns}) values ($placeholders)";
+            $stmt = $this->dbh->prepare($query);
+            $stmt->execute(array_values($data));
         }catch(PDOException $e){
             die("error in selecting" . $e->getMessage());
         }

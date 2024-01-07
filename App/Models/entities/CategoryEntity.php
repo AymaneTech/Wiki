@@ -1,13 +1,12 @@
 <?php
 namespace App\Models\entities;
-class Category
+class CategoryEntity
 {
     private $categoryId;
     private $categoryName;
     private $categoryDescription;
     private $categoryImage;
-    public function __construct($categoryId = null, $categoryName = "", $categoryDescription = "", $categoryImage = null){
-        $this->categoryId = $categoryId;
+    public function __construct($categoryName = "", $categoryDescription = "", $categoryImage = null){
         $this->categoryName = $categoryName;
         $this->categoryDescription = $categoryDescription;
         $this->categoryImage = $categoryImage;
@@ -20,5 +19,4 @@ class Category
         if (property_exists($this, $property)) $this->$property;
         else die ($property . " property does not exist");
     }
-
 }

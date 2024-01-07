@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\entities;
-class User
+class UserEntity
 {
     private $userId;
     private $username;

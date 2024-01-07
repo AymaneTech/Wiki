@@ -1,14 +1,13 @@
 <?php
 namespace App\Models\entities;
-class wikiTag
+
+class TagEntity
 {
-    private $pivotId;
-    private Wiki $wiki;
-    private Tag $tag;
-    public function __construct( $pivotId = null, $tag = null, $wiki = null){
-        $this->pivotId = $pivotId;
-        $this->wiki = $wiki;
-        $this->tag = $tag;
+    private $tagId;
+    private $tagName;
+    public function __construct($tagId = null, $tagName = ""){
+        $this->tagId = $tagId;
+        $this->tagName = $tagName;
     }
     public function __get($property){
         if (property_exists($this, $property)) return $this->$property;
@@ -18,5 +17,4 @@ class wikiTag
         if (property_exists($this, $property)) $this->$property;
         else die ($property . " property does not exist");
     }
-
 }

@@ -1,14 +1,14 @@
 <?php
 namespace App\Models\entities;
-class Wiki
+class WikiEntity
 {
     private $wikiId;
     private $wikiTitle;
     private $wikiContent;
     private $wikiDescription;
     private $wikiImage;
-    private User $author;
-    private Category $category;
+    private UserEntity $author;
+    private CategoryEntity $category;
     public function __construct($wikiId = null, $wikiTitle = "", $wikiContent = "", $wikiDescription = "", $wikiImage = null){
         $this->wikiId = $wikiId;
         $this->wikiTitle = $wikiTitle;
