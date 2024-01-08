@@ -50,3 +50,12 @@ function getImage($file)
     $tmp = $file["tmp_name"];
     return file_get_contents($tmp);
 }
+function loop($data){
+    foreach ($data as $item){
+        echo "<br>";
+        echo "<pre>";
+        var_dump($item->tagId);
+        echo "</pre>";
+        echo "<br>";
+    }
+}
