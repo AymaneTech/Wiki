@@ -8,12 +8,14 @@ class UserEntity
     private $email;
     private $password;
     private $userImage;
-    public function __construct($email = "", $password = "", $username = "", $userImage = null, $userId = null){
+    private $role;
+    public function __construct($email = "", $password = "", $username = "", $userImage = null, $role = 2, $userId = null){
         $this->userId = $userId;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->userImage = $userImage;
+        $this->role = $role;
     }
     public function __get($property){
         if (property_exists($this, $property)) return $this->$property;

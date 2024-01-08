@@ -19,20 +19,20 @@ class Categories extends Controller
     {
 
         $data = $this->categoryService->getCategories();
-        $this->view("Category/index", $data);
+        $this->view("Admin/Category/index", $data);
     }
 
     public function create()
     {
-        $this->view("Category/create");
+        $this->view("Admin/Category/create");
     }
 
     public function save()
     {
         if (isset($_POST["postRequest"])) {
-            $result = Input::filterInput($_POST, $_FILES["categoryImage"]);
+            $result = filterInput($_POST, $_FILES["categoryImage"]);
             if (!empty($result[0])) {
-                $this->view("Category/create", $result);
+                $this->view("Admin/Category/create", $result);
                 exit();
             }
             $this->categoryService->saveCategory($result);
@@ -43,14 +43,14 @@ class Categories extends Controller
     {
         if (isset($_POST["editId"])) {
             $data = $this->categoryService->findById($_POST["editId"]);
-            $this->view("Category/edit", $data);
+            $this->view("Admin/Category/edit", $data);
         }
     }
     public function update (){
         if(isset($_POST["postRequest"])){
-            $result = Input::filterInput($_POST, $_FILES["categoryImage"]);
+            $result = filterInput($_POST, $_FILES["categoryImage"]);
             if (!empty($result[0])) {
-                $this->view("Category/edit", $result);
+                $this->view("Admin/Category/edit", $result);
                 exit();
             }
             $this->categoryService->updateCategory($result);

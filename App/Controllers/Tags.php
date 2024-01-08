@@ -14,7 +14,7 @@ class Tags extends Controller
     }
     public function index(){
         $data[0] = $this->tagService->getTags();
-        $this->view("Tag/index", $data);
+        $this->view("Admin/Tag/index", $data);
     }
     public function create (){
         if(isset($_POST["postRequest"])){
@@ -34,7 +34,7 @@ class Tags extends Controller
             $data[0] = $this->tagService->getTags();
             $data[1] = $this->tagService->findById($_POST["editId"]);
 //            Functions::dd($data);
-            $this->view("Tag/index", $data);
+            $this->view("Admin/Tag/index", $data);
         }
     }
     public function update(){

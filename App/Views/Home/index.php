@@ -11,11 +11,9 @@
                         Embark on a Journey of Knowledge: Explore, Learn, Grow!
                     </h1>
                 </div>
-
                 <div class="max-w-3xl text-center mx-auto">
                     <p class="text-lg text-gray-400">Discover stories, thinking, and expertise from writers on any topic.</p>
                 </div>
-
                 <div class="text-center">
                     <a class="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-sm font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800" href="#">
                         Get started
