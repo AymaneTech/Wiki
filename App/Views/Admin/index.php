@@ -1,10 +1,8 @@
 <?php require_once APP_ROOT . "/Views/Components/head.php" ?>
-<!-- start: Sidebar -->
+
 <?php require_once APP_ROOT . "/Views/Components/admin-sidebar.php" ?>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
-<!-- end: Sidebar -->
 
-<!-- start: Main -->
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
     <?php require_once APP_ROOT . "/Views/Components/admin-header.php" ?>
     <div class="p-6">

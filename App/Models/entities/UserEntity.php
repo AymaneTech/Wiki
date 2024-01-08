@@ -8,7 +8,7 @@ class UserEntity
     private $email;
     private $password;
     private $userImage;
-    public function __construct($userId = null, $username = "", $email = "", $password = "", $userImage = null){
+    public function __construct($email = "", $password = "", $username = "", $userImage = null, $userId = null){
         $this->userId = $userId;
         $this->username = $username;
         $this->email = $email;

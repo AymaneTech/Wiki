@@ -1,3 +1,20 @@
+// drop down
+document.addEventListener("DOMContentLoaded", function () {
+    var dropdownButton = document.getElementById("dropdownButton");
+    var dropdownMenu = document.getElementById("dropdownMenu");
+
+    dropdownButton.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("hidden");
+    });
+    window.addEventListener("click", function (event) {
+        if (!event.target.matches('#dropdownButton')) {
+            if (!dropdownMenu.classList.contains('hidden')) {
+                dropdownMenu.classList.add('hidden');
+            }
+        }
+    });
+});
+
 // start: Sidebar
 const sidebarToggle = document.querySelector('.sidebar-toggle')
 const sidebarOverlay = document.querySelector('.sidebar-overlay')

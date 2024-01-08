@@ -6,7 +6,7 @@ use App\Models\repositories\Category;
 use App\Helpers\Functions;
 class CategoryService
 {
-    private $category;
+    private Category $category;
     public function __construct(){
         $this->category = new Category();
     }
