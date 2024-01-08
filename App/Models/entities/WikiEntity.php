@@ -9,12 +9,14 @@ class WikiEntity
     private $wikiImage;
     private UserEntity $author;
     private CategoryEntity $category;
-    public function __construct($wikiId = null, $wikiTitle = "", $wikiContent = "", $wikiDescription = "", $wikiImage = null){
+    public function __construct( $wikiTitle = "", $wikiDescription = "", $wikiContent = "", $wikiImage = null, $category = null, $author = null, $wikiId = null){
         $this->wikiId = $wikiId;
         $this->wikiTitle = $wikiTitle;
         $this->wikiContent = $wikiContent;
         $this->wikiDescription = $wikiDescription;
         $this->wikiImage = $wikiImage;
+        $this->category = $category;
+        $this->author = $author;
     }
     public function __get($property){
         if (property_exists($this, $property)) return $this->$property;
@@ -24,4 +26,6 @@ class WikiEntity
         if (property_exists($this, $property)) $this->$property = $value;
         else die ($property . " property does not exist");
     }
+
+
 }

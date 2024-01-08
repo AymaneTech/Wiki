@@ -23,13 +23,20 @@ function checkPasswords($password, $passwordConfirmation): bool
         return false;
     }
 }
-
+function getImage($file)
+{
+    $tmp = $file["tmp_name"];
+    return file_get_contents($tmp);
+}
 function filterInput($post, $file = null)
 {
     $errors = [];
     $data = [];
     unset($_POST["postRequest"]);
     foreach ($_POST as $key => $value) {
+        if(is_array($value)) {
+            $data["tags"] = $value;
+        }
         if (empty($value)) {
             $errors[] = $key . ' is required';
         } else {
@@ -45,11 +52,6 @@ function filterInput($post, $file = null)
     }
     return $data;
 }
-function getImage($file)
-{
-    $tmp = $file["tmp_name"];
-    return file_get_contents($tmp);
-}
 function loop($data){
     foreach ($data as $item){
         echo "<br>";
@@ -58,4 +60,7 @@ function loop($data){
         echo "</pre>";
         echo "<br>";
     }
+}
+function user_session($var){
+    return $_SESSION["user"]->$var;
 }

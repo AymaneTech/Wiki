@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models\Services;
-session_start();
 USE App\Helpers\Functions as f;
 use App\Models\repositories\userRepository;
 use App\Models\entities\UserEntity;
