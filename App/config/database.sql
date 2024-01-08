@@ -45,3 +45,5 @@ CREATE TABLE wikiTag
     FOREIGN KEY (wikiId) REFERENCES wiki (wikiId),
     FOREIGN KEY (tagId) REFERENCES tag (tagId)
 );
+ALTER TABLE users
+ADD COLUMN role int;

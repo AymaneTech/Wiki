@@ -2,10 +2,9 @@
 
 namespace App\Models\Services;
 session_start();
-
+USE App\Helpers\Functions as f;
 use App\Models\repositories\userRepository;
 use App\Models\entities\UserEntity;
-use App\Helpers\Functions as f;
 
 class userService
 {
@@ -18,10 +17,9 @@ class userService
 
     public function register($data)
     {
-        $userEntity = new UserEntity($data["email"], $data["password"], $data["username"], $data["image"]);
+        $userEntity = new UserEntity($data["email"], $data["password"], $data["username"], $data["image"], $data["role"]);
         $this->user->register($userEntity);
     }
-
     public function login($data)
     {
         $userEntity = new UserEntity($data["email"], $data["password"]);

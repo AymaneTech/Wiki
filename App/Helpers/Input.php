@@ -31,5 +31,9 @@ class Input
         }
         return $data;
     }
+    public static function checkPasswords($password, $passwordConfirmation){
+        if ($password === $passwordConfirmation){ return true;}
+        else { return false; }
+    }
 
 }

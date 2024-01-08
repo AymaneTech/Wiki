@@ -24,7 +24,21 @@ class Users extends \App\Core\Controller
         }
     }
     public function register(){
-
+        $this->view("Auth/register");
+        if(isset($_POST["postRequest"])){
+            $result = Input::filterInput($_POST, $_FILES["image"]);
+            if (!empty($result[0])) {
+                $this->view("Auth/register", $result);
+                exit();
+            }
+            $checkPassword = Input::checkPasswords($result["password"], $result["confirmPassword"]);
+            if(!$checkPassword){
+                $this->view("Auth/register", $result);
+                exit();
+            }
+            unset($result["passwordConfirm"]);
+            $result["password"] = password_hash($result["password"], PASSWORD_BCRYPT);
+            $this->userService->register($result);
+        }
     }
-
 }
