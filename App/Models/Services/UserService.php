@@ -17,17 +17,17 @@ class userService
 
     public function register($data)
     {
-        $userEntity = new UserEntity($data["email"], $data["password"], $data["username"], $data["image"], $data["role"]);
+        $userEntity = new UserEntity($data["email"], $data["password"], $data["username"], isset($data["image"])?$data["image"]: null);
         $this->user->register($userEntity);
     }
     public function login($data)
     {
         $userEntity = new UserEntity($data["email"], $data["password"]);
         $result = $this->user->login($userEntity);
-        if ($result == 0) {
+        if (!is_object($result) && $result == 0) {
             return $_SESSION['error'] = "There is no account with this email address";
         }
-        if ($result == 1) {
+        if (!is_object($result) && $result == 1) {
             return $_SESSION['error'] = "incorrect password";
         }else {
             $_SESSION['user'] = $result;

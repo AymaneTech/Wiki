@@ -1,12 +1,12 @@
-<?php require_once APP_ROOT . "/Views/Components/head.php"; ?>
+<?php include_once  "../App/Views/Components/head.php"; ?>
 
 <div class="h-screen md:flex">
-    <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-400 to-green-700 i justify-around items-center hidden">
+    <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-slate-400 to-slate-900 i justify-around items-center hidden">
         <div>
             <h1 class="text-white font-bold text-4xl font-sans">WIKI</h1>
             <p class="text-white mt-1">The most popular peer to peer lending at SEA</p>
             <a href="login"
-               class="text-center block w-28 bg-white text-green-800 mt-4 py-2 rounded-2xl font-bold mb-2">
+               class="text-center block w-28 bg-white text-slate-800 mt-4 py-2 rounded-2xl font-bold mb-2">
                 Login
             </a>
         </div>
@@ -65,18 +65,8 @@
                 </svg>
                 <input class="pl-2 outline-none border-none" type="file" name="image" id="image"/>
             </div>
-            <div class="flex justify-center gap-8">
-                <div class="roleType">
-                    <input name="role" id="admin" type="radio" value="1">
-                    <label for="admin">Admin</label>
-                </div>
-                <div class="roleType">
-                    <input name="role" id="client" type="radio" value="2">
-                    <label for="client">Author</label>
-                </div>
-            </div>
             <button type="submit" name="postRequest"
-                    class="block w-full bg-green-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Sign Up
+                    class="block w-full bg-slate-900 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Sign Up
             </button>
             <?= (isset($_GET["error"])) ? "<p class='text-red-500 font-bold flex justify-center transition-opacity duration-500 ease-in-out opacity-100'>" . $_GET["error"] . "</p>" : ""; ?>
 

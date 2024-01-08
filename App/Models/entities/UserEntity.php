@@ -9,7 +9,7 @@ class UserEntity
     private $password;
     private $userImage;
     private $role;
-    public function __construct($email = "", $password = "", $username = "", $userImage = null, $role = null, $userId = null){
+    public function __construct($email = "", $password = "", $username = "", $userImage = null, $role = 2, $userId = null){
         $this->userId = $userId;
         $this->username = $username;
         $this->email = $email;

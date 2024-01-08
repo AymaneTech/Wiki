@@ -7,6 +7,6 @@ class Wikis extends Controller
 {
     public function index()
     {
-        $this->view("Wiki/index");
+        $this->view("Admin/Wiki/index");
     }
 }
