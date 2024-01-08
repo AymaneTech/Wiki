@@ -1,0 +1,14 @@
+{
+  "name": "aymanetwill/wiki",
+  "require": {
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "files": [
+      "App/Helpers/Functions.php"
+    ],
+    "psr-4": {
+      "App\\": "App/"
+    }
+  }
+}
