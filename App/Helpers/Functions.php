@@ -23,18 +23,20 @@ function checkPasswords($password, $passwordConfirmation): bool
         return false;
     }
 }
+
 function getImage($file)
 {
     $tmp = $file["tmp_name"];
     return file_get_contents($tmp);
 }
+
 function filterInput($post, $file = null)
 {
     $errors = [];
     $data = [];
     unset($_POST["postRequest"]);
     foreach ($_POST as $key => $value) {
-        if(is_array($value)) {
+        if (is_array($value)) {
             $data["tags"] = $value;
         }
         if (empty($value)) {
@@ -52,8 +54,10 @@ function filterInput($post, $file = null)
     }
     return $data;
 }
-function loop($data){
-    foreach ($data as $item){
+
+function loop($data)
+{
+    foreach ($data as $item) {
         echo "<br>";
         echo "<pre>";
         var_dump($item->tagId);
@@ -61,6 +65,9 @@ function loop($data){
         echo "<br>";
     }
 }
-function user_session($var){
-    return $_SESSION["user"]->$var;
+
+function user_session($var)
+{
+    if (isset($_SESSION["user"])) { return $_SESSION["user"]->$var; }
+    else { header("Location: http://localhost/wiki/Users/login") ;}
 }

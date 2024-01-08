@@ -20,6 +20,6 @@ class WikiService
         $authorEntity->__set("userId", $authorId);
         $wikiEntity = new WikiEntity($wikiTitle, $wikiDescription, $wikiContent, $image, $categoryEntity, $authorEntity);
         $this->wikiRepository->saveWiki($wikiEntity);
+//        return $this->lastInserted();
     }
-
 }

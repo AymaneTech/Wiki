@@ -36,7 +36,12 @@ class Wikis extends Controller
             $_POST["authorId"] = user_session("userId");
             unset($_POST["tags"]);
             $result = filterInput($_POST, $_FILES["image"]);
+            if(!empty($result[0])){
+                $this->view("Workspace/wikis/create", $result);
+                exit();
+            }
             $this->wikiService->saveWiki($result);
+            $this->view("Workspace/index");
         }
     }
 
