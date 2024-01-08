@@ -5,7 +5,7 @@ class Controller
 {
     public function model($model)
     {
-        $modelClass = 'App\\Models\\' . $model;
+        $modelClass = 'App\\Models\\services\\' . $model;
         if (class_exists($modelClass)) {
             return new $modelClass();
         } else {
