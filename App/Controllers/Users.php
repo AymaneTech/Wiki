@@ -19,7 +19,7 @@ class Users extends \App\Core\Controller
     {
         $this->view("Auth/login");
         if (isset($_POST["postRequest"])) {
-            $result = Input::filterInput($_POST);
+            $result = filterInput($_POST);
             $user = $this->userService->login($result);
             if (!is_object($user) && isset($_SESSION["error"])) {
                 $this->view("Auth/login");
@@ -34,15 +34,16 @@ class Users extends \App\Core\Controller
         $this->view("Auth/register");
         if (isset($_POST["postRequest"])) {
             if (isset($_FILES) && $_FILES["image"]["size"] > 0) {
-                $result = Input::filterInput($_POST, $_FILES["image"]);
+                $result = filterInput($_POST, $_FILES["image"]);
             } else {
-                $result = Input::filterInput($_POST);
+                $result = filterInput($_POST);
             }
             if (!empty($result[0])) {
                 $this->view("Auth/register", $result);
                 exit();
             }
-            $checkPassword = Input::checkPasswords($result["password"], $result["confirmPassword"]);
+            $email = checkEmail($result["email"]);
+            $checkPassword = checkPasswords($result["password"], $result["confirmPassword"]);
             if (!$checkPassword) {
                 $this->view("Auth/register", $result);
                 exit();
