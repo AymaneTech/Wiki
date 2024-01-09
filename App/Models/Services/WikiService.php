@@ -85,7 +85,6 @@ class WikiService
     {
         $categoryRepository = new CategoryRepository();
         $result2 = $categoryRepository->findById($categoryEntity);
-//        dd($result2);
         if (is_array($result2)) {
             $categoryEntity->__set("categoryName", $result2[0]["categoryName"]);
             $categoryEntity->__set("categoryDescription", $result2[0]["categoryDescription"]);

@@ -44,7 +44,7 @@ abstract class Model
     public function getPagination($pagination)
     {
         try {
-            $limit = 5;
+            $limit = 10;
             $pagination = (int)$pagination;
             $offset = ($pagination - 1) * $limit;
 

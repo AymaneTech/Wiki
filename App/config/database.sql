@@ -19,6 +19,14 @@ CREATE TABLE category
     categoryImage       mediumblob
 );
 
+
+
+CREATE TABLE tag
+(
+    tagId   int auto_increment primary key,
+    tagName varchar(255)
+);
+
 CREATE TABLE wiki
 (
     wikiId          int auto_increment primary key,
@@ -28,24 +36,18 @@ CREATE TABLE wiki
     wikiImage       mediumblob,
     authorId        int,
     categoryId      int,
-    FOREIGN KEY (authorId) REFERENCES users (userId),
-    FOREIGN KEY (categoryId) REFERENCES category (categoryId)
-);
-
-CREATE TABLE tag
-(
-    tagId   int auto_increment primary key,
-    tagName varchar(255)
+    FOREIGN KEY (authorId) REFERENCES users (userId) ON DELETE CASCADE,
+    FOREIGN KEY (categoryId) REFERENCES category (categoryId) ON DELETE CASCADE,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE wikiTag
 (
     pivotId int auto_increment primary key,
     tagId   int,
     wikiId  int,
-    FOREIGN KEY (wikiId) REFERENCES wiki (wikiId),
-    FOREIGN KEY (tagId) REFERENCES tag (tagId)
+    FOREIGN KEY (wikiId) REFERENCES wiki (wikiId) ON DELETE CASCADE,
+    FOREIGN KEY (tagId) REFERENCES tag (tagId) ON DELETE CASCADE
 );
 ALTER TABLE users
 ADD COLUMN role int;
 
-ALTER TABLE wiki ADD COLUMN createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
