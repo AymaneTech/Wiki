@@ -19,12 +19,12 @@ class Categories extends Controller
     {
 
         $data = $this->categoryService->getCategories();
-        $this->view("Admin/CategoryRepository/index", $data);
+        $this->view("Admin/Category/index", $data);
     }
 
     public function create()
     {
-        $this->view("Admin/CategoryRepository/create");
+        $this->view("Admin/Category/create");
     }
 
     public function save()
@@ -32,7 +32,7 @@ class Categories extends Controller
         if (isset($_POST["postRequest"])) {
             $result = filterInput($_POST, $_FILES["categoryImage"]);
             if (!empty($result[0])) {
-                $this->view("Admin/CategoryRepository/create", $result);
+                $this->view("Admin/Category/create", $result);
                 exit();
             }
             $this->categoryService->saveCategory($result);
@@ -43,14 +43,14 @@ class Categories extends Controller
     {
         if (isset($_POST["editId"])) {
             $data = $this->categoryService->findById($_POST["editId"]);
-            $this->view("Admin/CategoryRepository/edit", $data);
+            $this->view("Admin/Category/edit", $data);
         }
     }
     public function update (){
         if(isset($_POST["postRequest"])){
             $result = filterInput($_POST, $_FILES["categoryImage"]);
             if (!empty($result[0])) {
-                $this->view("Admin/CategoryRepository/edit", $result);
+                $this->view("Admin/Category/edit", $result);
                 exit();
             }
             $this->categoryService->updateCategory($result);

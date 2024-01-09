@@ -72,3 +72,9 @@ function user_session($var)
     if (isset($_SESSION["user"])) { return $_SESSION["user"]->$var; }
     else { header("Location: http://localhost/wiki/Users/login") ;}
 }
+function error ($message){
+    echo "<br> 
+           <strong style='color:red; font-weight:bold; font-size: 20px;' class='font-bold'>Error:  {$message}</strong>
+           <br> <br>";
+    die("program stoped");
+}

@@ -28,7 +28,8 @@ class WikiRepository extends \App\Core\Model
     {
         return $this->getAll();
     }
-    public function findById(){
-
+    public function getPaginationWikis($pagination){
+        return $this->getPagination($pagination);
     }
+
 }

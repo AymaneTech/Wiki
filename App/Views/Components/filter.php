@@ -6,3 +6,8 @@
     </a>
 <?php endforeach; ?>
 </div>
+<style>
+    body{
+        background-color: rgb(229 231 235);
+    }
+</style>
