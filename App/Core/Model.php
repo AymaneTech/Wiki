@@ -24,7 +24,7 @@ abstract class Model
     {
         try {
             $columns = implode(',', $this->columns);
-            $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName}");
+            $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName} limit 10");
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             die("error in selecting" . $e->getMessage());

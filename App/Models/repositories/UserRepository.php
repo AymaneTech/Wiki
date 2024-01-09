@@ -28,4 +28,11 @@ class UserRepository extends \App\Core\Model
             }
         }
     }
+
+    public function findById(UserEntity $authorEntity)
+    {
+        $id = $authorEntity->__get("userId");
+        $result = $this->findByColumn("userId", $id);
+        return $result[0];
+    }
 }

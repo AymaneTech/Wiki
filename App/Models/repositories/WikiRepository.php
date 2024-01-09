@@ -13,7 +13,6 @@ class WikiRepository extends \App\Core\Model
 
     public function saveWiki(WikiEntity $wikiEntity)
     {
-//        dd($wikiEntity->__get("author"));
         $data = ["wikiTitle" => $wikiEntity->__get("wikiTitle"),
             "wikiDescription" => $wikiEntity->__get("wikiDescription"),
             "wikiContent" => $wikiEntity->__get("wikiContent"),
@@ -23,5 +22,13 @@ class WikiRepository extends \App\Core\Model
         ];
         $this->save($data);
         return $this->lastInsertId();
+    }
+
+    public function getAllWikis()
+    {
+        return $this->getAll();
+    }
+    public function findById(){
+
     }
 }

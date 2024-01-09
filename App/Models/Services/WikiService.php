@@ -3,8 +3,11 @@
 namespace App\Models\Services;
 
 use App\Models\entities\CategoryEntity;
+use App\Models\entities\TagEntity;
 use App\Models\entities\UserEntity;
 use App\Models\entities\WikiEntity;
+use App\Models\repositories\CategoryRepository;
+use App\Models\repositories\UserRepository;
 use App\Models\repositories\WikiRepository;
 
 class WikiService
@@ -14,6 +17,35 @@ class WikiService
     public function __construct()
     {
         $this->wikiRepository = new WikiRepository();
+    }
+    public function getWikis(){
+        $array = [];
+        $wikis = $this->wikiRepository->getAllWikis();
+        foreach($wikis as $wiki){
+//           TODO: go to the test folder there is an example
+            $categoryEntity = new CategoryEntity();
+            $authorEntity = new UserEntity();
+            $categoryEntity->__set("categoryId", $wiki->categoryId);
+            $authorEntity->__set("userId", $wiki->authorId);
+//            continue the filling of category object
+            $categoryRepository = new CategoryRepository();
+            $result = $categoryRepository->findById($categoryEntity);
+            $categoryEntity->__set("categoryName", $result->categoryName);
+            $categoryEntity->__set("categoryDescription", $result->categoryDescription);
+            $categoryEntity->__set("categoryImage", $result->categoryImage);
+//            continue the filling of user object
+            $authorRepository = new UserRepository();
+            $result = $authorRepository->findById($authorEntity);
+            $authorEntity->__set("username", $result->username);
+            $authorEntity->__set("email", $result->email);
+            $authorEntity->__set("userImage", $result->userImage);
+
+            $wikiEntity = new WikiEntity($wiki->wikiTitle,  $wiki->wikiDescription, $wiki->wikiContent, $wiki->wikiImage, $wiki->createdAt, $wiki->wikiId);
+            $wikiEntity->__set("category", $categoryEntity);
+            $wikiEntity->__set("author", $authorEntity);
+            $array[] = $wikiEntity;
+        }
+        return $array;
     }
 
     public function saveWiki($wiki)
@@ -27,5 +59,14 @@ class WikiService
         $wikiEntity->__set("category", $categoryEntity);
         $wikiEntity->__set("author", $authorEntity);
         return $this->wikiRepository->saveWiki($wikiEntity);
+    }
+    public function findById($id){
+        $array = [];
+        $wikis = $this->wikiRepository->findByColumn("tagId", $id);
+        foreach($wikis as $wiki){
+            $wikiEntity = new WikiEntity($wiki->wikiTitle,  $wiki->wikiDescription, $wiki->wikiContent, $wiki->wikiImage, $wiki->wikiId );
+            $array[] = $wikiEntity;
+        }
+        return $array;
     }
 }

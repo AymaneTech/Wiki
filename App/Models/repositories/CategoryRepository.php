@@ -5,7 +5,7 @@ namespace App\Models\repositories;
 use App\Core\Model;
 use App\Models\Entities\CategoryEntity;
 
-class Category extends Model
+class CategoryRepository extends Model
 {
     public function __construct()
     {

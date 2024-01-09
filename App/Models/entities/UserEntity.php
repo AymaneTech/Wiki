@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\entities;
-class UserEntity
+class UserEntity extends \App\Models\entities\CategoryEntity
 {
     private $userId;
     private $username;
