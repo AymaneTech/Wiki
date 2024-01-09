@@ -53,5 +53,11 @@ class Wikis extends Controller
         $data = ["wikis" => $result];
         $this->view("admin/wiki/manageWiki", $data);
     }
+    public function archive (){
+        if(isset($_POST["archivedId"])){
+            $this->wikiService->archiveWiki($_POST["archivedId"]);
+            $this->manageWiki();
+        }
+    }
 
 }

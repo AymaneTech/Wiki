@@ -8,6 +8,7 @@ class WikiEntity
     private $wikiDescription;
     private $wikiImage;
     private UserEntity $author;
+    private $isArchived;
     private CategoryEntity $category;
     private $createdAt;
     public function __construct( $wikiTitle = "", $wikiDescription = "", $wikiContent = "", $wikiImage = null, $createdAt = null, $wikiId = null){

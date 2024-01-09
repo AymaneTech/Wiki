@@ -15,7 +15,6 @@ extract($data, EXTR_SKIP);
                 <div class="flex justify-between mb-4 items-start">
                     <div class="font-medium">Wikis</div>
                 </div>
-
                 <div class="overflow-x-auto">
                     <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
                         <thead>
@@ -55,7 +54,6 @@ extract($data, EXTR_SKIP);
                                          alt="<?= $wiki->wikiTitle?>"
                                          class="w-8 h-8 rounded object-cover block">
                                 </td>
-
                                 <td class="w-1/12 py-2 px-4 border-b border-b-gray-300">
                                     <p class="text-[13px] text-gray-900 text-sm hover:text-blue-500 ml-2 truncate">
                                         <?= $wiki->wikiTitle ?>
@@ -82,11 +80,15 @@ extract($data, EXTR_SKIP);
                                             </button>
                                         </form>
 
-                                        <form action="<?= APP_URL ?>categories/archive" method="post">
-                                            <input type="hidden" name="deleteId" value="<?= $wiki->wikiId ?>">
+                                        <form action="<?= APP_URL ?>wikis/archive" method="post">
+                                            <input type="hidden" name="archivedId" value="<?= $wiki->wikiId ?>">
+                                            <?php
+                                            $wiki->isArchived = (int)$wiki->isArchived;
+                                            if($wiki->isArchived !== 1):?>
                                             <button class="py-2 px-4 bg-red-500 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
                                                 Archive
                                             </button>
+                                            <?php endif;?>
                                         </form>
                                     </div>
                                 </td>

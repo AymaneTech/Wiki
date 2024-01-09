@@ -32,4 +32,12 @@ class WikiRepository extends \App\Core\Model
         return $this->getPagination($pagination);
     }
 
+    public function archiveWiki(WikiEntity $wikiEntity)
+    {
+        $id = $wikiEntity->__get("wikiId");
+        $data = ["isArchived" => 0];
+        $condition = ["wikiId" => $id];
+        $this->update($data, $condition);
+    }
+
 }

@@ -32,6 +32,7 @@ class WikiService
             $author = $this->fillAuthorEntity($authorEntity);
 
             $wikiEntity = new WikiEntity($wiki->wikiTitle, $wiki->wikiDescription, $wiki->wikiContent, $wiki->wikiImage, $wiki->createdAt, $wiki->wikiId);
+            $wikiEntity->__set("isArchived", $wiki->isArchived);
             $wikiEntity->__set("category", $category);
             $wikiEntity->__set("author", $author);
             $array[] = $wikiEntity;
@@ -103,5 +104,10 @@ class WikiService
         $authorEntity->__set("email", $result->email);
         $authorEntity->__set("userImage", $result->userImage);
         return $authorEntity;
+    }
+    public function archiveWiki($id){
+        $wikiEntity = new WikiEntity();
+        $wikiEntity->__set("wikiId", $id);
+        $this->wikiRepository->archiveWiki($wikiEntity);
     }
 }
