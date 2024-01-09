@@ -60,10 +60,11 @@ function loop($data)
     foreach ($data as $item) {
         echo "<br>";
         echo "<pre>";
-        var_dump($item->tagId);
+        var_dump($item);
         echo "</pre>";
         echo "<br>";
     }
+    die();
 }
 
 function user_session($var)

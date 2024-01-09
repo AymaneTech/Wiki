@@ -72,5 +72,8 @@ abstract class Model
             die("error in deleting" . $e->getMessage());
         }
     }
+    public function lastInsertId(){
+        return $this->dbh->lastInsertId();
+    }
 
 }

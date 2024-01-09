@@ -22,5 +22,6 @@ class WikiRepository extends \App\Core\Model
             "authorId" => $wikiEntity->__get("author")->__get("userId")
         ];
         $this->save($data);
+        return $this->lastInsertId();
     }
 }
