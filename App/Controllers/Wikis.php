@@ -15,10 +15,11 @@ class Wikis extends Controller
 
     public function index()
     {
-        $categories = $this->model('CategoryService');
-        $tags = $this->model('TagService');
-        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories()];
-        $this->view("Workspace/wikis/create", $data);
+        dd("index view for wikis ");
+//        $categories = $this->model('CategoryService');
+//        $tags = $this->model('TagService');
+//        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories()];
+//        $this->view("Workspace/wikis/create", $data);
     }
 
     public function create()
@@ -46,6 +47,11 @@ class Wikis extends Controller
             $wikiTagService->saveWikiTag($wikiTag);
             $this->view("Workspace/index");
         }
+    }
+    public function manageWiki (){
+        $result = $this->wikiService->getWikis();
+        $data = ["wikis" => $result];
+        $this->view("admin/wiki/manageWiki", $data);
     }
 
 }

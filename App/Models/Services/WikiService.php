@@ -19,7 +19,7 @@ class WikiService
         $this->wikiRepository = new WikiRepository();
     }
 
-    public function getWikis()
+    public function getWikis() :array
     {
         $array = [];
         $wikis = $this->wikiRepository->getAllWikis();

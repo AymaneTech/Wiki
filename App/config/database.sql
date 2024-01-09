@@ -51,3 +51,6 @@ CREATE TABLE wikiTag
 ALTER TABLE users
 ADD COLUMN role int;
 
+ALTER TABLE wiki
+ADD COLUMN isArchived int;
+update wiki set isArchived = 1 where isArchived = null;
