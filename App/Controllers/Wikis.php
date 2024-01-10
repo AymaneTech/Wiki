@@ -60,5 +60,4 @@ class Wikis extends Controller
             header("Location: " . APP_URL . "workspace/authorDashboard");
         }
     }
-
 }

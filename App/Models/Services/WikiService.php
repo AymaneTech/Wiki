@@ -81,6 +81,23 @@ class WikiService
         }
         return $array;
     }
+    public function getSingleWiki($wikiId)
+    {
+        $wikiEntity = new WikiEntity();
+        $wikiEntity->__set("wikiId", $wikiId);
+        $result = $this->wikiRepository->getSingleWiki($wikiEntity);
+        extract($result, EXTR_SKIP);
+        $categoryEntity = new CategoryEntity();
+        $authorEntity = new UserEntity();
+        $categoryEntity->__set("categoryId", $categoryId);
+        $authorEntity->__set("userId", $authorId);
+        $category = $this->fillCategoryEntity($categoryEntity);
+        $author = $this->fillAuthorEntity($authorEntity);
+        $singleWikiEntity = new WikiEntity($wikiTitle, $wikiDescription, $wikiContent, $wikiImage, $createdAt, $wikiId);
+        $singleWikiEntity->__set("category", $category);
+        $singleWikiEntity->__set("author", $author);
+        return $singleWikiEntity;
+    }
 
     public function saveWiki($wiki)
     {
@@ -110,7 +127,8 @@ class WikiService
         extract($result);
         return new WikiEntity($wikiTitle, $wikiDescription,  $wikiContent,  $wikiImage, $createdAt,  $wikiId);
     }
-    public function updateWiki($data){
+    public function updateWiki($data)
+    {
         extract($data);
         $wikiEntity = new WikiEntity($wikiTitle, $wikiDescription, $wikiContent, $image);
         $wikiEntity->__set("wikiId", $wikiId);

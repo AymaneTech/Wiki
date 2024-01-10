@@ -37,17 +37,17 @@
                 <div class="flex-1 flex flex-col justify-between py-6 px-4">
                     <div>
                         <div class="flex items-center justify-between mb-2">
-                            <h2 class="text-xl font-semibold text-gray-900"><?= $wiki->author->username ?></h2>
-                            <p class="text-gray-700 text-sm"><?= $wiki->category->categoryName ?></p>
+                            <h2 class="text-xl font-semibold text-gray-900"><?= $wiki->__get("author")->__get("username") ?></h2>
+                            <p class="text-gray-700 text-sm"><?= $wiki->__get("category")->__get("categoryName") ?></p>
                         </div>
-                        <h2 class="font-bold text-2xl mb-2"><?= $wiki->wikiTitle ?></h2>
-                        <p class="text-gray-700 text-sm mb-4"><?= $wiki->wikiDescription ?></p>
+                        <h2 class="font-bold text-2xl mb-2"><?= $wiki->__get("wikiTitle") ?></h2>
+                        <p class="text-gray-700 text-sm mb-4"><?= $wiki->__get("wikiDescription") ?></p>
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="time font-medium text-gray-500">
-                            <time datetime="<?= $wiki->createdAt ?>"><?= date('M j, Y', strtotime($wiki->createdAt)) ?></time>
+                            <time datetime="<?= $wiki->__get("createdAt") ?>"><?= date('M j, Y', strtotime($wiki->__get("createdAt"))) ?></time>
                         </div>
-                        <a href="<?= APP_URL ?>wikis/singleWiki"
+                        <a href="<?= APP_URL ?>singleWiki/<?=$wiki->__get("wikiId")?>"
                            class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">
                             <span>Read Wiki</span>
                         </a>
@@ -70,16 +70,16 @@
                     class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <a href="#!">
                     <img class="rounded-t-lg"
-                         src="data:image/jpg;charset=utf8;base64,<?= base64_encode($item->categoryImage) ?>" alt=""/>
+                         src="data:image/jpg;charset=utf8;base64,<?= base64_encode($item->__get("categoryImage")) ?>" alt=""/>
                 </a>
                 <div class="p-6">
                     <div class="flex gap-16">
                         <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800">
-                            <?= $item->categoryName ?>
+                            <?= $item->__get("categoryName") ?>
                         </h5>
                     </div>
                         <p class="mb-4 text-base text-neutral-600">
-                            <?= $item->categoryDescription?>
+                            <?= $item->__get("categoryDescription")?>
                         </p>
                     <a href="<?= APP_URL ?>wikis/singleWiki"
                        class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">

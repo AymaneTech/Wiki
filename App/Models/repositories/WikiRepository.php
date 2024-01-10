@@ -79,4 +79,9 @@ class WikiRepository extends \App\Core\Model
         ];
         $this->update($data, $condition);
     }
+
+    public function getSingleWiki(WikiEntity $wikiEntity)
+    {
+        return $this->findOneByColumn("wikiId", $wikiEntity->__get("wikiId"));
+    }
 }
