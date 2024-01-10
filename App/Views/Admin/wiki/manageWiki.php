@@ -9,7 +9,6 @@ extract($data, EXTR_SKIP);
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main"
       style="background-color: rgb(243 244 246);">
     <?php require_once APP_ROOT . "/Views/Components/admin-header.php" ?>
-
     <div class="p-6">
         <div class="gap-6 mb-6">
             <div class="border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md" style="background-color: #fff;">
@@ -107,5 +106,4 @@ extract($data, EXTR_SKIP);
         </div>
     </div>
 </main>
-
 <?php require_once APP_ROOT . "/Views/Components/scripts.php"; ?>

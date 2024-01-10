@@ -3,7 +3,6 @@
 namespace App\Models\Services;
 use App\Models\repositories\Tag;
 use App\Models\entities\TagEntity;
-use App\Helpers\Functions;
 class TagService
 {
     private $tag;

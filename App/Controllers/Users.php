@@ -24,7 +24,8 @@ class Users extends \App\Core\Controller
             if (!is_object($user) && isset($_SESSION["error"])) {
                 $this->view("Auth/login");
             } else {
-                echo "<script>window.location.replace('http://localhost/wiki/authors')</script>";
+                unset($_SESSION["error"]);
+                echo "<script>window.location.replace('http://localhost/wiki/workspace')</script>";
             }
         }
     }
@@ -51,6 +52,7 @@ class Users extends \App\Core\Controller
             unset($result["passwordConfirm"]);
             $result["password"] = password_hash($result["password"], PASSWORD_BCRYPT);
             $this->userService->register($result);
+            unset($_SESSION["error"]);
             echo "<script>window.location.replace('http://localhost/wiki/users/login')</script>";
         }
     }

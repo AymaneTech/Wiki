@@ -3,7 +3,7 @@
 <?php require_once APP_ROOT . "/Views/Components/author-sidebar.php" ?>
 <?php extract($data, EXTR_SKIP); ?>
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
-    <form method="post" action="<?=APP_URL?>wikis/save" enctype="multipart/form-data">
+    <form method="post" action="<?=APP_URL?>workspace/save" enctype="multipart/form-data">
         <div class="bg-indigo-50 min-h-screen md:px-20 pt-6">
             <div class=" bg-white rounded-xl px-6 py-10 mx-auto">
                 <h1 class="text-center text-4xl font-bold text-slate-900 mb-10">Add A Wiki</h1>

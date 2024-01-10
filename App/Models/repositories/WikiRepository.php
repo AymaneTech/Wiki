@@ -27,7 +27,7 @@ class WikiRepository extends \App\Core\Model
 
     public function getAllWikis()
     {
-        return $this->getAll();
+        return $this->getALl();
     }
     public function getPaginationWikis($pagination){
         return $this->getPagination($pagination);

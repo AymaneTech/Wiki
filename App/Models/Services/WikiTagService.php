@@ -22,7 +22,6 @@ class WikiTagService
             $tagWikiEntity = new WikiTagEntity($tagEntity, $wikiEntity);
             $this->wikiTagRepository->saveWikiTag($tagWikiEntity);
         }
-        dd("here");
     }
 
 }

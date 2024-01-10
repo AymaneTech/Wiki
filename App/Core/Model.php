@@ -34,7 +34,7 @@ abstract class Model
     {
         try {
             $columns = implode(',', $this->columns);
-            $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName} limit 10");
+            $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName}");
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             die("error in selecting" . $e->getMessage());
@@ -47,7 +47,6 @@ abstract class Model
             $limit = 10;
             $pagination = (int)$pagination;
             $offset = ($pagination - 1) * $limit;
-
             $columns = implode(',', $this->columns);
             $stmt = $this->dbh->prepare("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 LIMIT :offset, :limit");
 
