@@ -47,7 +47,10 @@ class Workspace extends \App\Core\Controller
         }
     }
     public function authorDashboard(){
-        $this->view("Workspace/wikis/Dashboard");
+        $userId =  user_session("userId");
+        $wikis = $this->wikiService->getAuthorWIkis($userId);
+        $data = ["wikis" => $wikis];
+        $this->view("Workspace/wikis/Dashboard", $data);
     }
 
 }

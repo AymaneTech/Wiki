@@ -37,5 +37,11 @@ class Wikis extends Controller
             $this->manageWiki();
         }
     }
+    public function delete(){
+        if(isset($_POST["deleteId"])){
+            $this->wikiService->deleteWiki($_POST["deleteId"]);
+           echo "<script>window.location.replace('http://localhost/wiki/workspace/authorDashboard')</script>";
+        }
+    }
 
 }

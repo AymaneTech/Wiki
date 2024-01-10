@@ -2,6 +2,7 @@
 
 namespace App\Models\repositories;
 
+use App\Models\entities\UserEntity;
 use App\Models\entities\WikiEntity;
 
 class WikiRepository extends \App\Core\Model
@@ -48,4 +49,15 @@ class WikiRepository extends \App\Core\Model
         $this->update($data, $condition);
     }
 
+    public function getAuthorWikis(UserEntity $userEntity)
+    {
+        $id = $userEntity->__get("userId");
+        return $this->findByColumn("authorId",$id);
+    }
+
+    public function deleteWiki(WikiEntity $wikiEntity)
+    {
+        $id = $wikiEntity->__get("wikiId");
+        $this->delete("wikiId", $id);
+    }
 }

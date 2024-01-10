@@ -1,405 +1,102 @@
+<?php extract ($data)?>
 <?php require_once APP_ROOT . "/Views/Components/head.php" ?>
-
 <?php require_once APP_ROOT . "/Views/Components/author-sidebar.php" ?>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
 
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
     <?php require_once APP_ROOT . "/Views/Components/admin-header.php" ?>
     <div class="p-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-            <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
-                <div class="flex justify-between mb-4">
-                    <div>
-                        <div class="flex items-center mb-1">
-                            <div class="text-2xl font-semibold">324</div>
-                        </div>
-                        <div class="text-sm font-medium text-gray-400">Total of Users</div>
-                    </div>
 
-                </div>
-                <div class="flex items-center">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
-                </div>
-            </div>
-            <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
-                <div class="flex justify-between mb-6">
-                    <div>
-                        <div class="text-2xl font-semibold mb-1">10</div>
-                        <div class="text-sm font-medium text-gray-400">Total of Categories</div>
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-full bg-gray-100 rounded-full h-4">
-                        <div class="h-full bg-blue-500 rounded-full p-1" style="width: 60%;">
-                            <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
-                        </div>
-                    </div>
-                    <span class="text-sm font-medium text-gray-600 ml-4">60%</span>
-                </div>
-            </div>
-            <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
-                <div class="flex justify-between mb-6">
-                    <div>
-                        <div class="text-2xl font-semibold mb-1"><span
-                                class="text-base font-normal text-gray-400 align-top">&dollar;</span>2,345
-                        </div>
-                        <div class="text-sm font-medium text-gray-400">Total wikis</div>
-                    </div>
-
-                </div>
-                <a href="#" class="text-blue-500 font-medium text-sm hover:text-blue-600">View details</a>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div class="gap-6 mb-6">
+            <h1 class="text-center font-bold text-3xl">Welcome to your space</h1>
             <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                 <div class="flex justify-between mb-4 items-start">
-                    <div class="font-medium">New users</div>
+                    <div class="font-medium">Your Wikis</div>
+                    <div class="add">
+                        <a href="<?= APP_URL ?>workspace/create"
+                           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 focus:outline-none">Create
+                            Wiki</a>
+                    </div>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
                         <thead>
                         <tr>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">
-                                username
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-100 text-left rounded-tl-md rounded-bl-md w-1/12">
+                                #
                             </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left"></th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
-                                email
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-100 text-left rounded-tl-md rounded-bl-md w-2/12">
+                                Wiki Cover
                             </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">
-                                wikis n°
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-emerald-500/10 text-emerald-500 font-medium text-[12px] leading-none">In progress</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="w-full min-w-[540px] hidden" data-tab-for="order" data-page="completed">
-                        <thead>
-                        <tr>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">
-                                Service
-                            </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
-                                Estimate
-                            </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
-                                Budget
-                            </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">
-                                Status
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-emerald-500/10 text-emerald-500 font-medium text-[12px] leading-none">Completed</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-emerald-500/10 text-emerald-500 font-medium text-[12px] leading-none">Completed</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-emerald-500/10 text-emerald-500 font-medium text-[12px] leading-none">Completed</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-emerald-500/10 text-emerald-500 font-medium text-[12px] leading-none">Completed</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-emerald-500/10 text-emerald-500 font-medium text-[12px] leading-none">Completed</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="w-full min-w-[540px] hidden" data-tab-for="order" data-page="canceled">
-                        <thead>
-                        <tr>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">
-                                Service
-                            </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
-                                Estimate
-                            </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
-                                Budget
-                            </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">
-                                Status
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-rose-500/10 text-rose-500 font-medium text-[12px] leading-none">Canceled</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-rose-500/10 text-rose-500 font-medium text-[12px] leading-none">Canceled</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-rose-500/10 text-rose-500 font-medium text-[12px] leading-none">Canceled</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-rose-500/10 text-rose-500 font-medium text-[12px] leading-none">Canceled</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">3 days</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$56</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="inline-block p-1 rounded bg-rose-500/10 text-rose-500 font-medium text-[12px] leading-none">Canceled</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
-                <div class="flex justify-between mb-4 items-start">
-                    <div class="font-medium">Recent Wikis</div>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full min-w-[540px]">
-                        <thead>
-                        <tr>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-100 text-left w-3/12">
                                 Wiki Title
                             </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
-                                Created By
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-100 text-left rounded-tr-md rounded-br-md w-3/12">
+                                Wiki Description
                             </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">
-                                Category
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-100 text-left rounded-tr-md rounded-br-md w-2/12">
+                                Actions
                             </th>
-                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md"></th>
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-100 text-left rounded-tr-md rounded-br-md w-1/12">
+                                Author
+                            </th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="flex items-center">
-                                    <img src="https://placehold.co/32x32" alt=""
-                                         class="w-8 h-8 rounded object-cover block">
-                                    <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate">Create
-                                        landing page</a>
-                                </div>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">$235</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400">1K</span>
-                            </td>
-                            <td class="py-2 px-4 border-b border-b-gray-50">
-                                <div class="dropdown">
-                                    <button type="button"
-                                            class="dropdown-toggle text-gray-400 hover:text-gray-600 text-sm w-6 h-6 rounded flex items-center justify-center bg-gray-50">
-                                        <i class="ri-more-2-fill"></i></button>
-                                    <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
-                                        <li>
-                                            <a href="#"
-                                               class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                               class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-blue-500 hover:bg-gray-50">Logout</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
 
+                        <tbody>
+                        <?php foreach ($wikis as $wiki): ?>
+                            <tr>
+                                <td class="1/12 py-2 px-4 border-b border-b-gray-300">
+                                        <span class="text-[13px] font-medium text-gray-800">
+                                            <?= $wiki->wikiId ?>
+                                        </span>
+                                </td>
+
+                                <td class="2/12 py-2 px-4 border-b border-b-gray-300">
+                                    <img src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->wikiImage) ?>"
+                                         alt="<?= $wiki->wikiTitle ?>"
+                                         class="w-8 h-8 rounded object-cover block">
+                                </td>
+                                <td class="w-1/12 py-2 px-4 border-b border-b-gray-300">
+                                    <p class="text-[13px] text-gray-900 text-sm hover:text-blue-500 ml-2 truncate">
+                                        <?= $wiki->wikiTitle ?>
+                                    </p>
+                                </td>
+
+                                <td class="w-3/12 py-2 px-4 border-b border-b-gray-300">
+                                        <span class="text-[13px] font-medium text-gray-800">
+                                            <?= $wiki->wikiDescription ?>
+                                        </span>
+                                </td>
+                                <td class="1/12 py-2 px-4 border-b border-b-gray-300">
+                                        <span class="text-[13px] font-medium text-gray-800">
+                                            <?= $wiki->author->username ?>
+                                        </span>
+                                </td>
+
+                                <td class="py-2 px-4 border-b border-b-gray-300">
+                                    <div class="flex items-center gap-4">
+                                        <form action="<?= APP_URL ?>wikis/edit" method="post">
+                                            <input type="hidden" name="editId" value="<?= $wiki->wikiId ?>">
+                                            <button type="submit" style="background-color: var(--color-primary); fill: var(--color-on-primary);"> <!-- Update with your semantic color variables -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                        <form action="<?= APP_URL ?>wikis/delete" method="post">
+                                            <input type="hidden" name="deleteId" value="<?= $wiki->wikiId ?>">
+                                            <button type="submit" style="background-color: var(--color-error); fill: var(--color-on-error);"> <!-- Update with your semantic color variables -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -408,7 +105,6 @@
     </div>
 </main>
 <!-- end: Main -->
-
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="<?= APP_URL ?>/public/assets/js/dashboard.js"></script>
