@@ -48,13 +48,13 @@ class Categories extends Controller
     }
     public function update (){
         if(isset($_POST["postRequest"])){
-            $result = filterInput($_POST, $_FILES["categoryImage"]);
-            if (!empty($result[0])) {
-                $this->view("Admin/Category/edit", $result);
-                exit();
-            }
-            $this->categoryService->updateCategory($result);
-            header("Location: " . APP_URL . "categories");
+                $result = filterInput($_POST, $_FILES["categoryImage"]);
+                if (!empty($result[0])) {
+                    $this->view("Admin/Category/edit", $result);
+                    exit();
+                }
+                $this->categoryService->updateCategory($result);
+                header("Location: " . APP_URL . "categories");
         }
     }
     public function delete()

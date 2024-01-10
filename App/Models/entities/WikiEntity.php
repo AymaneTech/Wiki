@@ -7,25 +7,27 @@ class WikiEntity
     private $wikiContent;
     private $wikiDescription;
     private $wikiImage;
+    private $isArchived;
     private UserEntity $author;
     private CategoryEntity $category;
-    public function __construct( $wikiTitle = "", $wikiDescription = "", $wikiContent = "", $wikiImage = null, $category = null, $author = null, $wikiId = null){
+    private $createdAt;
+    public function __construct( $wikiTitle = "", $wikiDescription = "", $wikiContent = "", $wikiImage = null, $createdAt = null, $wikiId = null){
         $this->wikiId = $wikiId;
         $this->wikiTitle = $wikiTitle;
         $this->wikiContent = $wikiContent;
         $this->wikiDescription = $wikiDescription;
         $this->wikiImage = $wikiImage;
-        $this->category = $category;
-        $this->author = $author;
+        $this->createdAt = $createdAt;
+        $this->isArchived = 0;
+
     }
+
     public function __get($property){
         if (property_exists($this, $property)) return $this->$property;
-        else die ($property . " property does not exist");
+        else die ($property . " property does not exist". __CLASS__);
     }
     public function __set($property, $value){
         if (property_exists($this, $property)) $this->$property = $value;
-        else die ($property . " property does not exist");
+        else die ($property . " property does not exist" . __CLASS__);
     }
-
-
 }

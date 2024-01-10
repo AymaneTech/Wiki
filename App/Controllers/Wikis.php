@@ -15,29 +15,49 @@ class Wikis extends Controller
 
     public function index()
     {
+        dd("index view for wikis ");
+    }
+    public function manageWiki ($id = 1){
         $categories = $this->model('CategoryService');
         $tags = $this->model('TagService');
-        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories()];
-        $this->view("Workspace/wikis/create", $data);
+        if($id > 1){
+            $result = $this->wikiService->getWikis($id);
+        }else {
+            $result = $this->wikiService->getWikis(1);
+        }
+        $data = ["wikis" => $result];
+        $this->view("admin/wiki/manageWiki", $data);
     }
-
-    public function create()
-    {
-        $categories = $this->model('CategoryService');
-        $tags = $this->model('TagService');
-        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories()];
-        $this->view("Workspace/wikis/create", $data);
-    }
-
-    public function save()
-    {
-        if (isset($_POST["postRequest"])) {
-            $tags = $_POST["tags"];
-            $_POST["authorId"] = user_session("userId");
-            unset($_POST["tags"]);
-            $result = filterInput($_POST, $_FILES["image"]);
-            $this->wikiService->saveWiki($result);
+    public function archive (){
+        if(isset($_POST["archivedId"])){
+            $this->wikiService->archiveWiki($_POST["id"]);
+            $this->manageWiki();
+        }else if(isset($_POST["desarchivedId"])){
+            $this->wikiService->removeWikiFromArchive($_POST["id"]);
+            $this->manageWiki();
         }
     }
-
+    public function delete(){
+        if(isset($_POST["deleteId"])){
+            $this->wikiService->deleteWiki($_POST["deleteId"]);
+           echo "<script>window.location.replace('http://localhost/wiki/workspace/authorDashboard')</script>";
+        }
+    }
+    public function edit($id){
+        $categories = $this->model('CategoryService');
+        $tags = $this->model('TagService');
+        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wiki" => $this->wikiService->editWiki($id)];
+        $this->view("workspace/wikis/edit", $data);
+    }
+    public function update(){
+        if(isset($_POST["postRequest"])){
+            $result = filterInput($_POST, $_FILES["image"]);
+            if (!empty($result[0])) {
+                $this->view("workspace/authorDashboard", $result);
+                exit();
+            }
+            $this->wikiService->updateWiki($result);
+            header("Location: " . APP_URL . "workspace/authorDashboard");
+        }
+    }
 }

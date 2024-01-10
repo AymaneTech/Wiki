@@ -2,20 +2,20 @@
 
 namespace App\Models\Services;
 use App\Models\entities\CategoryEntity;
-use App\Models\repositories\Category;
+use App\Models\repositories\CategoryRepository;
 use App\Helpers\Functions;
 class CategoryService
 {
-    private Category $category;
+    private CategoryRepository $category;
     public function __construct(){
-        $this->category = new Category();
+        $this->category = new CategoryRepository();
     }
     public function saveCategory($category){
         $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["image"]);
         $this->category->saveCategory($categoryEntity);
     }
     public function updateCategory($category){
-        $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["image"], $category["categoryId"]);
+        $categoryEntity = new CategoryEntity($category["catwegoryName"], $category["categoryDescription"], $category["image"], $category["categoryId"]);
         $this->category->updateCategory($categoryEntity);
     }
     public function getCategories()

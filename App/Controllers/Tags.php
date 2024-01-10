@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 use App\Core\Controller;
-use App\Helpers\Functions;
-use App\Helpers\Input;
 class Tags extends Controller
 {
     private $tagService;
@@ -18,7 +16,7 @@ class Tags extends Controller
     }
     public function create (){
         if(isset($_POST["postRequest"])){
-            $result = Input::filterInput($_POST);
+            $result = filterInput($_POST);
             $this->tagService->saveTag($result);
             header("Location: " . APP_URL . "Tags");
         }
@@ -39,7 +37,7 @@ class Tags extends Controller
     }
     public function update(){
         if(isset($_POST["postRequest"])){
-            $result = Input::filterInput($_POST);
+            $result = filterInput($_POST);
             $this->tagService->updateTag($result);
             header("Location: " . APP_URL . "tags");
         }

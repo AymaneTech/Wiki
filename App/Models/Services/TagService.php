@@ -3,7 +3,6 @@
 namespace App\Models\Services;
 use App\Models\repositories\Tag;
 use App\Models\entities\TagEntity;
-use App\Helpers\Functions;
 class TagService
 {
     private $tag;
@@ -16,8 +15,8 @@ class TagService
     }
     public function getTags(){
         $array = [];
-        $categories = $this->tag->getAllTags();
-        foreach($categories as $tag){
+        $tags = $this->tag->getAllTags();
+        foreach($tags as $tag){
             $tagEntity = new TagEntity($tag->tagName, $tag->tagId);
             $array[] = $tagEntity;
         }
