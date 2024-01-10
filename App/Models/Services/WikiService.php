@@ -110,4 +110,10 @@ class WikiService
         $wikiEntity->__set("wikiId", $id);
         $this->wikiRepository->archiveWiki($wikiEntity);
     }
+
+    public function removeWikiFromArchive($id){
+        $wikiEntity = new WikiEntity();
+        $wikiEntity->__set("wikiId", $id);
+        $this->wikiRepository->removeWikiFromArchive($wikiEntity);
+    }
 }

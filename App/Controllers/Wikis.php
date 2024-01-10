@@ -55,7 +55,10 @@ class Wikis extends Controller
     }
     public function archive (){
         if(isset($_POST["archivedId"])){
-            $this->wikiService->archiveWiki($_POST["archivedId"]);
+            $this->wikiService->archiveWiki($_POST["id"]);
+            $this->manageWiki();
+        }else if(isset($_POST["desarchivedId"])){
+            $this->wikiService->removeWikiFromArchive($_POST["id"]);
             $this->manageWiki();
         }
     }

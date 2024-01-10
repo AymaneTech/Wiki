@@ -18,6 +18,8 @@ class WikiEntity
         $this->wikiDescription = $wikiDescription;
         $this->wikiImage = $wikiImage;
         $this->createdAt = $createdAt;
+        $this->isArchived = 0;
+
     }
 
     public function __get($property){

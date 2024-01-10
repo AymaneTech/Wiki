@@ -15,7 +15,7 @@ class CategoryService
         $this->category->saveCategory($categoryEntity);
     }
     public function updateCategory($category){
-        $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["image"], $category["categoryId"]);
+        $categoryEntity = new CategoryEntity($category["catwegoryName"], $category["categoryDescription"], $category["image"], $category["categoryId"]);
         $this->category->updateCategory($categoryEntity);
     }
     public function getCategories()

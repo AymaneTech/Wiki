@@ -1,4 +1,4 @@
-<?php require_once APP_ROOT . "/Views/Components/head.php" ;
+<?php require_once APP_ROOT . "/Views/Components/head.php";
 extract($data, EXTR_SKIP);
 ?>
 
@@ -6,7 +6,8 @@ extract($data, EXTR_SKIP);
 
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
 
-<main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main" style="background-color: rgb(243 244 246);">
+<main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main"
+      style="background-color: rgb(243 244 246);">
     <?php require_once APP_ROOT . "/Views/Components/admin-header.php" ?>
 
     <div class="p-6">
@@ -51,7 +52,7 @@ extract($data, EXTR_SKIP);
 
                                 <td class="2/12 py-2 px-4 border-b border-b-gray-300">
                                     <img src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->wikiImage) ?>"
-                                         alt="<?= $wiki->wikiTitle?>"
+                                         alt="<?= $wiki->wikiTitle ?>"
                                          class="w-8 h-8 rounded object-cover block">
                                 </td>
                                 <td class="w-1/12 py-2 px-4 border-b border-b-gray-300">
@@ -81,14 +82,19 @@ extract($data, EXTR_SKIP);
                                         </form>
 
                                         <form action="<?= APP_URL ?>wikis/archive" method="post">
-                                            <input type="hidden" name="archivedId" value="<?= $wiki->wikiId ?>">
+                                            <input type="hidden" name="id" value="<?= $wiki->wikiId ?>">
                                             <?php
                                             $wiki->isArchived = (int)$wiki->isArchived;
-                                            if($wiki->isArchived !== 1):?>
-                                            <button class="py-2 px-4 bg-red-500 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                                                Archive
-                                            </button>
-                                            <?php endif;?>
+                                            if ($wiki->isArchived !== 1) {
+                                                ?>
+                                                <button name="archivedId" class="py-2 px-4 bg-red-500 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                                                    Archive
+                                                </button>
+                                            <?php } else { ?>
+                                                <button name="desarchivedId" class="py-2 px-4 bg-green-500 text-white font-semibold rounded-xl shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                                                    desArchive
+                                                </button>
+                                            <?php } ?>
                                         </form>
                                     </div>
                                 </td>
@@ -102,4 +108,4 @@ extract($data, EXTR_SKIP);
     </div>
 </main>
 
-<?php require_once APP_ROOT . "/Views/Components/scripts.php" ; ?>
+<?php require_once APP_ROOT . "/Views/Components/scripts.php"; ?>

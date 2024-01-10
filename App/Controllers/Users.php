@@ -24,7 +24,7 @@ class Users extends \App\Core\Controller
             if (!is_object($user) && isset($_SESSION["error"])) {
                 $this->view("Auth/login");
             } else {
-                echo "<script>window.location.replace('http://localhost/wiki/author')</script>";
+                echo "<script>window.location.replace('http://localhost/wiki/authors')</script>";
             }
         }
     }

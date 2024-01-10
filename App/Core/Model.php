@@ -9,9 +9,9 @@ use App\Helpers\Functions;
 
 abstract class Model
 {
-    private $tableName;
-    private $columns = ["*"];
-    private $dbh;
+    private string $tableName;
+    private array $columns = ["*"];
+    private object $dbh;
 
     public function __construct($tableName)
     {
@@ -49,7 +49,7 @@ abstract class Model
             $offset = ($pagination - 1) * $limit;
 
             $columns = implode(',', $this->columns);
-            $stmt = $this->dbh->prepare("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 1 LIMIT :offset, :limit");
+            $stmt = $this->dbh->prepare("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 LIMIT :offset, :limit");
 
             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
