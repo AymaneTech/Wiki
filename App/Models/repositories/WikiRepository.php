@@ -60,4 +60,23 @@ class WikiRepository extends \App\Core\Model
         $id = $wikiEntity->__get("wikiId");
         $this->delete("wikiId", $id);
     }
+
+    public function editWiki(WikiEntity $wikiEntity)
+    {
+        return $this->findOneByColumn("wikiId", $wikiEntity->__get("wikiId"));
+    }
+
+    public function updateWiki(WikiEntity $wikiEntity)
+    {
+        $data = [
+            "wikiTitle"=> $wikiEntity->__get("wikiTitle"),
+            "wikiDescription"=> $wikiEntity->__get("wikiDescription"),
+            "wikiContent"=> $wikiEntity->__get("wikiContent"),
+            "wikiImage"=> $wikiEntity->__get("wikiImage")
+        ];
+        $condition = [
+            "wikiId"=> $wikiEntity->__get("wikiId")
+        ];
+        $this->update($data, $condition);
+    }
 }

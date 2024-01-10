@@ -39,6 +39,7 @@ class WikiService
         }
         return $array;
     }
+
     public function getPagination($pagination): array
     {
         $array = [];
@@ -58,7 +59,8 @@ class WikiService
         }
         return $array;
     }
-    public function getAuthorWikis($userId):array
+
+    public function getAuthorWikis($userId): array
     {
         $userEntity = new UserEntity();
         $userEntity->__set("userId", $userId);
@@ -79,6 +81,7 @@ class WikiService
         }
         return $array;
     }
+
     public function saveWiki($wiki)
     {
         extract($wiki);
@@ -91,11 +94,29 @@ class WikiService
         $wikiEntity->__set("author", $authorEntity);
         return $this->wikiRepository->saveWiki($wikiEntity);
     }
-    public function deleteWiki($id){
+
+    public function deleteWiki($id)
+    {
         $wikiEntity = new WikiEntity();
         $wikiEntity->__set("wikiId", $id);
         $this->wikiRepository->deleteWiki($wikiEntity);
     }
+
+    public function editWiki($id)
+    {
+        $wikiEntity = new WikiEntity();
+        $wikiEntity->__set("wikiId", $id);
+        $result =  $this->wikiRepository->editWiki($wikiEntity);
+        extract($result);
+        return new WikiEntity($wikiTitle, $wikiDescription,  $wikiContent,  $wikiImage, $createdAt,  $wikiId);
+    }
+    public function updateWiki($data){
+        extract($data);
+        $wikiEntity = new WikiEntity($wikiTitle, $wikiDescription, $wikiContent, $image);
+        $wikiEntity->__set("wikiId", $wikiId);
+        $this->wikiRepository->updateWiki($wikiEntity);
+    }
+
     public function findById($id): array
     {
         $array = [];
@@ -120,6 +141,7 @@ class WikiService
         }
         return $categoryEntity;
     }
+
     public function fillAuthorEntity($authorEntity)
     {
         $authorRepository = new UserRepository();
@@ -129,12 +151,14 @@ class WikiService
         $authorEntity->__set("userImage", $result->userImage);
         return $authorEntity;
     }
+
     public function archiveWiki($id)
     {
         $wikiEntity = new WikiEntity();
         $wikiEntity->__set("wikiId", $id);
         $this->wikiRepository->archiveWiki($wikiEntity);
     }
+
     public function removeWikiFromArchive($id)
     {
         $wikiEntity = new WikiEntity();

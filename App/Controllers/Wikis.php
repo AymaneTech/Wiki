@@ -43,5 +43,22 @@ class Wikis extends Controller
            echo "<script>window.location.replace('http://localhost/wiki/workspace/authorDashboard')</script>";
         }
     }
+    public function edit($id){
+        $categories = $this->model('CategoryService');
+        $tags = $this->model('TagService');
+        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wiki" => $this->wikiService->editWiki($id)];
+        $this->view("workspace/wikis/edit", $data);
+    }
+    public function update(){
+        if(isset($_POST["postRequest"])){
+            $result = filterInput($_POST, $_FILES["image"]);
+            if (!empty($result[0])) {
+                $this->view("workspace/authorDashboard", $result);
+                exit();
+            }
+            $this->wikiService->updateWiki($result);
+            header("Location: " . APP_URL . "workspace/authorDashboard");
+        }
+    }
 
 }

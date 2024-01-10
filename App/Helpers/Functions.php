@@ -2,6 +2,9 @@
 
 function dd($var)
 {
+    if(isset($var["image"])){
+        unset($var["image"]);
+    }
     echo "<br>";
     echo "<pre>";
     var_dump($var);
@@ -9,7 +12,6 @@ function dd($var)
     echo "<br>";
     die();
 }
-
 function checkEmail($email): bool
 {
     return (bool)filter_var($email, FILTER_VALIDATE_EMAIL);

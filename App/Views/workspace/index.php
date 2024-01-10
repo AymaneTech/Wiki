@@ -24,10 +24,11 @@
 </h2>
 <?php require_once APP_ROOT . "/Views/Components/filter.php" ?>
 <main class="flex justify-between mx-16  my-4 items-start space-x-4w">
-    <div class="wikis-parent flex flex-col gap-4">
+    <div class="wikis-parent flex flex-col md:w-2/3 gap-4">
         <h3 class="text-3xl font-bold my-4 mx-auto">Most Popular Wikis</h3>
         <?php foreach ($wikis as $wiki): ?>
-            <article class="custom-card p-4 flex flex-col md:flex-row bg-white shadow-lg rounded-lg mx-4 max-w-md md:max-w-4xl overflow-hidden">
+            <article
+                    class="custom-card p-4 flex flex-col md:flex-row bg-white shadow-lg rounded-lg mx-4 max-w-md md:max-w-4xl overflow-hidden">
                 <div class="md:mr-6 h-fit">
                     <img class="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover shadow"
                          src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->author->userImage) ?>"
@@ -61,6 +62,7 @@
 
         <?php endforeach; ?>
     </div>
+
     <div class="categories-parent w-[400px] h-[300px] flex flex-col gap-4">
         <h3 class="text-3xl font-bold my-4 mx-auto">Best Categories </h3>
         <?php foreach ($randomCategories as $item): ?>
