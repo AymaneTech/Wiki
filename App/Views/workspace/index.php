@@ -1,6 +1,8 @@
-<?php extract($data, EXTR_SKIP) ; ?>
-<?php require_once APP_ROOT . "/Views/Components/head.php" ?>
-<?php require_once APP_ROOT . "/Views/Components/author-header.php" ?>
+<?php
+extract_data();
+component("head");
+component("author-header");
+?>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
 <section>
     <div class="bg-slate-900">
@@ -22,7 +24,7 @@
 <h2 class="block font-bold text-center my-16   text-3xl sm:text-5xl md:text-3xl lg:text-5xl">
     Stay Curious
 </h2>
-<?php require_once APP_ROOT . "/Views/Components/filter.php" ?>
+<?php component("filter") ?>
 <main class="flex justify-between mx-16  my-4 items-start space-x-4w">
     <div class="wikis-parent flex flex-col md:w-2/3 gap-4">
         <h3 class="text-3xl font-bold my-4 mx-auto">Most Popular Wikis</h3>
@@ -47,7 +49,7 @@
                         <div class="time font-medium text-gray-500">
                             <time datetime="<?= $wiki->__get("createdAt") ?>"><?= date('M j, Y', strtotime($wiki->__get("createdAt"))) ?></time>
                         </div>
-                        <a href="<?= APP_URL ?>singleWiki/<?=$wiki->__get("wikiId")?>"
+                        <a href="<?= APP_URL ?>singleWiki/<?= $wiki->__get("wikiId") ?>"
                            class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">
                             <span>Read Wiki</span>
                         </a>
@@ -70,7 +72,8 @@
                     class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <a href="#!">
                     <img class="rounded-t-lg"
-                         src="data:image/jpg;charset=utf8;base64,<?= base64_encode($item->__get("categoryImage")) ?>" alt=""/>
+                         src="data:image/jpg;charset=utf8;base64,<?= base64_encode($item->__get("categoryImage")) ?>"
+                         alt=""/>
                 </a>
                 <div class="p-6">
                     <div class="flex gap-16">
@@ -78,9 +81,9 @@
                             <?= $item->__get("categoryName") ?>
                         </h5>
                     </div>
-                        <p class="mb-4 text-base text-neutral-600">
-                            <?= $item->__get("categoryDescription")?>
-                        </p>
+                    <p class="mb-4 text-base text-neutral-600">
+                        <?= $item->__get("categoryDescription") ?>
+                    </p>
                     <a href="<?= APP_URL ?>wikis/singleWiki"
                        class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">
                         <span>Read Wiki</span>

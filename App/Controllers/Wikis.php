@@ -38,10 +38,8 @@ class Wikis extends Controller
         }
     }
     public function delete(){
-        if(isset($_POST["deleteId"])){
-            $this->wikiService->deleteWiki($_POST["deleteId"]);
+            $this->wikiService->deleteWiki(post("deleteId"));
            echo "<script>window.location.replace('http://localhost/wiki/workspace/authorDashboard')</script>";
-        }
     }
     public function edit($id){
         $categories = $this->model('CategoryService');
@@ -57,7 +55,7 @@ class Wikis extends Controller
                 exit();
             }
             $this->wikiService->updateWiki($result);
-            header("Location: " . APP_URL . "workspace/authorDashboard");
+            redirect("workspace/authorDashboard");
         }
     }
 }

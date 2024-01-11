@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\Services\userService;
 use App\Helpers\Functions as f;
 use App\Helpers\Input;
-
 class Users extends \App\Core\Controller
 {
     private $userService;

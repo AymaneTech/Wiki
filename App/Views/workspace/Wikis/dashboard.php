@@ -1,12 +1,13 @@
-<?php extract ($data)?>
-<?php require_once APP_ROOT . "/Views/Components/head.php" ?>
-<?php require_once APP_ROOT . "/Views/Components/author-sidebar.php" ?>
+<?php
+extract_data();
+component("head");
+component("author-header");
+component("author-sidebar");
+?>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
 
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
-    <?php require_once APP_ROOT . "/Views/Components/admin-header.php" ?>
     <div class="p-6">
-
         <div class="gap-6 mb-6">
             <h1 class="text-center font-bold text-3xl">Welcome to your space</h1>
             <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">

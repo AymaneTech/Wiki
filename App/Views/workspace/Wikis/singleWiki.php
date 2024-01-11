@@ -1,7 +1,7 @@
 <?php
-extract($data, EXTR_SKIP);
-require_once APP_ROOT . "/views/components/head.php";
-require_once APP_ROOT . "/views/components/author-header.php";
+extract_data();
+component("head");
+component("author-header");
 ?>
 
 <main class="container mx-auto">

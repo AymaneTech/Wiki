@@ -1,7 +1,9 @@
-<?php extract($data, EXTR_SKIP); ?>
-<?php require_once APP_ROOT . "/Views/Components/admin-header.php" ?>
-<?php require_once APP_ROOT . "/Views/Components/author-sidebar.php" ?>
-<?php require_once APP_ROOT . "/Views/Components/head.php" ?>
+<?php
+extract_data();
+component("head");
+component("author-header");
+component("author-sidebar");
+?>
 
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
     <form method="post" action="<?=APP_URL?>wikis/update" enctype="multipart/form-data">

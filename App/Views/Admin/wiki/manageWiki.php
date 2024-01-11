@@ -1,5 +1,6 @@
-<?php require_once APP_ROOT . "/Views/Components/head.php";
-extract($data, EXTR_SKIP);
+<?php
+extract_data();
+component('head');
 ?>
 
 <?php require_once APP_ROOT . "/Views/Components/admin-sidebar.php" ?>

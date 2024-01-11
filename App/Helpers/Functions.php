@@ -12,18 +12,13 @@ function dd($var)
     echo "<br>";
     die();
 }
-function checkEmail($email): bool
-{
-    return (bool)filter_var($email, FILTER_VALIDATE_EMAIL);
-}
+function checkEmail($email): bool  { return (bool)filter_var($email, FILTER_VALIDATE_EMAIL);}
+function checkString($string):bool { return (bool)filter_var($string, FILTER_SANITIZE_FULL_SPECIAL_CHARS);}
 
 function checkPasswords($password, $passwordConfirmation): bool
 {
-    if ($password === $passwordConfirmation) {
-        return true;
-    } else {
-        return false;
-    }
+    if ($password === $passwordConfirmation) { return true; }
+    else { return false; }
 }
 
 function getImage($file)
@@ -32,7 +27,7 @@ function getImage($file)
     return file_get_contents($tmp);
 }
 
-function filterInput($post, $file = null)
+function filterInput($inputData, $file = null): array
 {
     $errors = [];
     $data = [];
@@ -45,6 +40,8 @@ function filterInput($post, $file = null)
             $errors[] = $key . ' is required';
         } else {
             $value = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+            trimValue($value);
+            $value = preg_replace('/[^a-zA-Z0-9]/', '', $value);
             $data[$key] = $value;
         }
     }
@@ -60,15 +57,12 @@ function filterInput($post, $file = null)
 function loop($data)
 {
     foreach ($data as $item) {
-        echo "<br>";
-        echo "<pre>";
+        echo "<br> <pre>";
         var_dump($item);
-        echo "</pre>";
-        echo "<br>";
+        echo "</pre> <br>";
     }
     die();
 }
-
 function user_session($var)
 {
     if (isset($_SESSION["user"])) { return $_SESSION["user"]->$var; }
@@ -79,4 +73,23 @@ function error ($message){
            <strong style='color:red; font-weight:bold; font-size: 20px;' class='font-bold'>Error:  {$message}</strong>
            <br> <br>";
     die("program stoped");
+}
+function redirect ($location){
+    header("Location: ".APP_URL. $location );
+}
+
+function verifyPassword($value, $hash):bool { return password_verify($value, $hash); }
+function isLoggedIn() :bool { return isset($_SESSION["user"]);}
+function trimValue(&$value) { $value = trim($value); }
+
+function post($value){
+    if(isset($_POST[$value])){ return $_POST[$value]; }
+    else { die($value." is invalid"); }
+}
+function get($value){
+    if(isset($_GET[$value])){ return $_GET[$value]; }
+    else { die($value." is invalid"); }
+}
+function component($file){
+    require_once APP_ROOT . "/Views/Components/".$file.".php";
 }

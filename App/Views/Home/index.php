@@ -1,6 +1,8 @@
-<?php require_once APP_ROOT . "/Views/Components/head.php" ?>
-
-<?php require_once APP_ROOT . "/Views/Components/visitor-header.php" ?>
+<?php
+extract_data();
+component("head");
+component("visitor-header");
+?>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
 <section>
     <div class="bg-slate-900">

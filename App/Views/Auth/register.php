@@ -1,5 +1,4 @@
-<?php include_once  "../App/Views/Components/head.php"; ?>
-
+<?php component("head") ?>
 <div class="h-screen md:flex">
     <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-slate-400 to-slate-900 i justify-around items-center hidden">
         <div>
