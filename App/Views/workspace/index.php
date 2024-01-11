@@ -28,13 +28,10 @@ component("author-header");
 <main class="flex justify-between mx-16  my-4 items-start space-x-4w">
     <div class="wikis-parent flex flex-col md:w-2/3 gap-4">
         <h3 class="text-3xl font-bold my-4 mx-auto">Most Popular Wikis</h3>
-        <?php foreach ($wikis as $wiki): ?>
-            <article
-                    class="custom-card p-4 flex flex-col md:flex-row bg-white shadow-lg rounded-lg mx-4 max-w-md md:max-w-4xl overflow-hidden">
+        <?php foreach ($wikis as $wiki) : ?>
+            <article class="custom-card p-4 flex flex-col md:flex-row bg-white shadow-lg rounded-lg mx-4 max-w-md md:max-w-4xl overflow-hidden">
                 <div class="md:mr-6 h-fit">
-                    <img class="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover shadow"
-                         src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->author->userImage) ?>"
-                         alt="avatar">
+                    <img class="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover shadow" src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->author->userImage) ?>" alt="avatar">
                 </div>
                 <div class="flex-1 flex flex-col justify-between py-6 px-4">
                     <div>
@@ -49,16 +46,13 @@ component("author-header");
                         <div class="time font-medium text-gray-500">
                             <time datetime="<?= $wiki->__get("createdAt") ?>"><?= date('M j, Y', strtotime($wiki->__get("createdAt"))) ?></time>
                         </div>
-                        <a href="<?= APP_URL ?>singleWiki/<?= $wiki->__get("wikiId") ?>"
-                           class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">
+                        <a href="<?= APP_URL ?>singleWiki/<?= $wiki->__get("wikiId") ?>" class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">
                             <span>Read Wiki</span>
                         </a>
                     </div>
                 </div>
                 <div class="flex-shrink-0">
-                    <img class="w-48 h-48 md:w-64 md:h-64 rounded-lg object-cover"
-                         src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->wikiImage) ?>"
-                         alt="wiki-image">
+                    <img class="w-48 h-48 md:w-64 md:h-64 rounded-lg object-cover" src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->wikiImage) ?>" alt="wiki-image">
                 </div>
             </article>
 
@@ -67,13 +61,10 @@ component("author-header");
 
     <div class="categories-parent w-[400px] h-[300px] flex flex-col gap-4">
         <h3 class="text-3xl font-bold my-4 mx-auto">Best Categories </h3>
-        <?php foreach ($randomCategories as $item): ?>
-            <article
-                    class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+        <?php foreach ($randomCategories as $item) : ?>
+            <article class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <a href="#!">
-                    <img class="rounded-t-lg"
-                         src="data:image/jpg;charset=utf8;base64,<?= base64_encode($item->__get("categoryImage")) ?>"
-                         alt=""/>
+                    <img class="rounded-t-lg" src="data:image/jpg;charset=utf8;base64,<?= base64_encode($item->__get("categoryImage")) ?>" alt="" />
                 </a>
                 <div class="p-6">
                     <div class="flex gap-16">
@@ -84,8 +75,7 @@ component("author-header");
                     <p class="mb-4 text-base text-neutral-600">
                         <?= $item->__get("categoryDescription") ?>
                     </p>
-                    <a href="<?= APP_URL ?>wikis/singleWiki"
-                       class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">
+                    <a href="<?= APP_URL ?>wikis/singleWiki" class="cool-btn inline-flex items-center text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white text-sm font-medium rounded-full px-6 py-3">
                         <span>Read Wiki</span>
                     </a>
                 </div>
@@ -99,7 +89,5 @@ component("author-header");
     <a class="border-xl rounded-full bg-gray-300 p-4" href="http://localhost/wiki/workspace/2">2</a>
     <a class="border-xl rounded-full bg-gray-300 p-4" href="http://localhost/wiki/workspace/3">3</a>
 </div>
-<?php //require_once APP_ROOT . "/Views/Components/footer.php" ?>
-
-
-
+<?php //require_once APP_ROOT . "/Views/Components/footer.php"
+?>
