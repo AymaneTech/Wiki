@@ -54,3 +54,18 @@ ADD COLUMN role int;
 ALTER TABLE wiki
 ADD COLUMN isArchived int;
 update wiki set isArchived = 1 where isArchived = null;
+
+alter table wiki add column updatedAt timestamp;
+
+
+DELIMITER //
+CREATE TRIGGER if not exists after_update_wikis
+    AFTER UPDATE ON wiki
+    FOR EACH ROW
+BEGIN
+    UPDATE wiki SET updatedAt = current_timestamp() WHERE wikiId = NEW.wikiId;
+END;
+//
+DELIMITER ;
+drop trigger after_update_wikis;
+

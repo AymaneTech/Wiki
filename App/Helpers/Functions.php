@@ -80,8 +80,12 @@ function redirect ($location){
 
 function verifyPassword($value, $hash):bool { return password_verify($value, $hash); }
 function isLoggedIn() :bool { return isset($_SESSION["user"]);}
+function checkAuthorPermission(){
+    if (!isLoggedIn()){
+        redirect("users/login");
+    }
+}
 function trimValue(&$value) { $value = trim($value); }
-
 function post($value){
     if(isset($_POST[$value])){ return $_POST[$value]; }
     else { die($value." is invalid"); }

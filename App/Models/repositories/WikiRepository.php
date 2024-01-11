@@ -72,7 +72,8 @@ class WikiRepository extends \App\Core\Model
             "wikiTitle"=> $wikiEntity->__get("wikiTitle"),
             "wikiDescription"=> $wikiEntity->__get("wikiDescription"),
             "wikiContent"=> $wikiEntity->__get("wikiContent"),
-            "wikiImage"=> $wikiEntity->__get("wikiImage")
+            "wikiImage"=> $wikiEntity->__get("wikiImage"),
+            "updatedAt" => $wikiEntity->__get("updatedAt")
         ];
         $condition = [
             "wikiId"=> $wikiEntity->__get("wikiId")

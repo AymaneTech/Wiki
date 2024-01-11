@@ -81,6 +81,7 @@ class WikiService
         }
         return $array;
     }
+
     public function getSingleWiki($wikiId)
     {
         $wikiEntity = new WikiEntity();
@@ -123,15 +124,18 @@ class WikiService
     {
         $wikiEntity = new WikiEntity();
         $wikiEntity->__set("wikiId", $id);
-        $result =  $this->wikiRepository->editWiki($wikiEntity);
+        $result = $this->wikiRepository->editWiki($wikiEntity);
         extract($result);
-        return new WikiEntity($wikiTitle, $wikiDescription,  $wikiContent,  $wikiImage, $createdAt,  $wikiId);
+        return new WikiEntity($wikiTitle, $wikiDescription, $wikiContent, $wikiImage, $createdAt, $wikiId);
     }
+
     public function updateWiki($data)
     {
         extract($data);
+        $updatedAt = date("Y-m-d H:i:s");
         $wikiEntity = new WikiEntity($wikiTitle, $wikiDescription, $wikiContent, $image);
         $wikiEntity->__set("wikiId", $wikiId);
+        $wikiEntity->__set("updatedAt", $updatedAt);
         $this->wikiRepository->updateWiki($wikiEntity);
     }
 
@@ -141,6 +145,28 @@ class WikiService
         $wikis = $this->wikiRepository->findByColumn("tagId", $id);
         foreach ($wikis as $wiki) {
             $wikiEntity = new WikiEntity($wiki->wikiTitle, $wiki->wikiDescription, $wiki->wikiContent, $wiki->wikiImage, $wiki->wikiId);
+            $array[] = $wikiEntity;
+        }
+        return $array;
+    }
+
+    public function findByCategory($categoryId)
+    {
+        $categoryEntity = new CategoryEntity();
+        $categoryEntity->__set("categoryId", $categoryId);
+        $array = [];
+        $categoryWikis = $this->wikiRepository->findByColumn("categoryId", $categoryId);
+        foreach ($categoryWikis as $wiki) {
+            $categoryEntity = new CategoryEntity();
+            $authorEntity = new UserEntity();
+            $categoryEntity->__set("categoryId", $wiki->categoryId);
+            $authorEntity->__set("userId", $wiki->authorId);
+            $category = $this->fillCategoryEntity($categoryEntity);
+            $author = $this->fillAuthorEntity($authorEntity);
+
+            $wikiEntity = new WikiEntity($wiki->wikiTitle, $wiki->wikiDescription, $wiki->wikiContent, $wiki->wikiImage, $wiki->createdAt, $wiki->wikiId);
+            $wikiEntity->__set("category", $category);
+            $wikiEntity->__set("author", $author);
             $array[] = $wikiEntity;
         }
         return $array;

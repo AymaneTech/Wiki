@@ -58,4 +58,9 @@ class Wikis extends Controller
             redirect("workspace/authorDashboard");
         }
     }
+    public function category($categoryId){
+        $result = $this->wikiService->findByCategory($categoryId);
+        $data = ["wikis"=> $result];
+        $this->view("home/singleCategory", $data);
+    }
 }
