@@ -1,5 +1,5 @@
 <?php
-extract_data();
+extract($data, EXTR_SKIP);
 component("head");
 component("author-header");
 ?>
