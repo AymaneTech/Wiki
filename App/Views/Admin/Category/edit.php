@@ -1,5 +1,7 @@
-<?php require_once APP_ROOT . "/Views/Components/head.php" ?>
-<?php require_once APP_ROOT . "/Views/Components/admin-sidebar.php" ?>
+<?php
+component("head");
+component("admin-sidebar")
+?>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main"
       style="background-color: rgb(243 244 246);">

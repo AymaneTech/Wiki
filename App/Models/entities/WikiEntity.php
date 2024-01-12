@@ -11,6 +11,7 @@ class WikiEntity
     private UserEntity $author;
     private CategoryEntity $category;
     private $createdAt;
+    private $updatedAt;
     public function __construct( $wikiTitle = "", $wikiDescription = "", $wikiContent = "", $wikiImage = null, $createdAt = null, $wikiId = null){
         $this->wikiId = $wikiId;
         $this->wikiTitle = $wikiTitle;

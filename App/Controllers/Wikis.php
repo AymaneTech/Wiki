@@ -12,11 +12,6 @@ class Wikis extends Controller
     {
         $this->wikiService = $this->model('WikiService');
     }
-
-    public function index()
-    {
-        dd("index view for wikis ");
-    }
     public function manageWiki ($id = 1){
         $categories = $this->model('CategoryService');
         $tags = $this->model('TagService');
@@ -38,26 +33,29 @@ class Wikis extends Controller
         }
     }
     public function delete(){
-        if(isset($_POST["deleteId"])){
-            $this->wikiService->deleteWiki($_POST["deleteId"]);
-           echo "<script>window.location.replace('http://localhost/wiki/workspace/authorDashboard')</script>";
-        }
+            $this->wikiService->deleteWiki(post("deleteId"));
+           echo "<script>window.location.replace('http://localhost/wiki/home/authorDashboard')</script>";
     }
     public function edit($id){
         $categories = $this->model('CategoryService');
         $tags = $this->model('TagService');
         $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wiki" => $this->wikiService->editWiki($id)];
-        $this->view("workspace/wikis/edit", $data);
+        $this->view("home/wikis/edit", $data);
     }
     public function update(){
         if(isset($_POST["postRequest"])){
             $result = filterInput($_POST, $_FILES["image"]);
             if (!empty($result[0])) {
-                $this->view("workspace/authorDashboard", $result);
+                $this->view("home/authorDashboard", $result);
                 exit();
             }
             $this->wikiService->updateWiki($result);
-            header("Location: " . APP_URL . "workspace/authorDashboard");
+            redirect("home/authorDashboard");
         }
+    }
+    public function category($categoryId){
+        $result = $this->wikiService->findByCategory($categoryId);
+        $data = ["wikis"=> $result];
+        $this->view("home/singleCategory", $data);
     }
 }

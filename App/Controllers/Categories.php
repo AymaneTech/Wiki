@@ -17,7 +17,6 @@ class Categories extends Controller
 
     public function index()
     {
-
         $data = $this->categoryService->getCategories();
         $this->view("Admin/Category/index", $data);
     }
@@ -36,32 +35,34 @@ class Categories extends Controller
                 exit();
             }
             $this->categoryService->saveCategory($result);
-            header("Location: " . APP_URL . "categories");
+            redirect("categories");
         }
     }
+
     public function edit()
     {
-        if (isset($_POST["editId"])) {
-            $data = $this->categoryService->findById($_POST["editId"]);
+            $data = $this->categoryService->findById(post("editId"));
             $this->view("Admin/Category/edit", $data);
+    }
+
+    public function update()
+    {
+        if (isset($_POST["postRequest"])) {
+            $file = $_FILES['categoryImage'] ?? null;
+            $result = filterInput($_POST, $_FILES["categoryImage"]);
+            if (!empty($result["errors"])) {
+                $this->view("Admin/Category/edit", $result);
+                exit();
+            }
+            $this->categoryService->updateCategory($result);
+            redirect("categories");
+
         }
     }
-    public function update (){
-        if(isset($_POST["postRequest"])){
-                $result = filterInput($_POST, $_FILES["categoryImage"]);
-                if (!empty($result[0])) {
-                    $this->view("Admin/Category/edit", $result);
-                    exit();
-                }
-                $this->categoryService->updateCategory($result);
-                header("Location: " . APP_URL . "categories");
-        }
-    }
+
     public function delete()
     {
-        if (isset($_POST["deleteId"])) {
-            $this->categoryService->deleteCategory($_POST["deleteId"]);
-            header("Location: " . APP_URL . "categories");
-        }
+            $this->categoryService->deleteCategory(post("deleteId"));
+            redirect("categories");
     }
 }

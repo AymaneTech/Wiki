@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\Services\userService;
 use App\Helpers\Functions as f;
 use App\Helpers\Input;
-
 class Users extends \App\Core\Controller
 {
     private $userService;
@@ -25,7 +24,7 @@ class Users extends \App\Core\Controller
                 $this->view("Auth/login");
             } else {
                 unset($_SESSION["error"]);
-                echo "<script>window.location.replace('http://localhost/wiki/workspace')</script>";
+                echo "<script>window.location.replace('http://localhost/wiki/home')</script>";
             }
         }
     }
