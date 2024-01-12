@@ -15,61 +15,122 @@
         <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
     </div>
     <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
-        <form action="" method="post" class="bg-white" enctype="multipart/form-data">
-            <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
-            <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
-            <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/>
-                </svg>
-                <input class="pl-2 outline-none border-none" type="text" name="username" id="username"
-                       placeholder="username"/>
-            </div>
-            <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
-                </svg>
-                <input class="pl-2 outline-none border-none" type="text" name="email" id=""
-                       placeholder="Email Address"/>
-            </div>
-            <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-                     fill="currentColor">
-                    <path fill-rule="evenodd"
-                          d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                          clip-rule="evenodd"/>
-                </svg>
-                <input class="pl-2 outline-none border-none" type="password" name="password" id=""
-                       placeholder="Password"/>
-            </div>
-            <div class="flex items-center border-2 py-2 px-3 rounded-2xl mt-4 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-                     fill="currentColor">
-                    <path fill-rule="evenodd"
-                          d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                          clip-rule="evenodd"/>
-                </svg>
-                <input class="pl-2 outline-none border-none" type="password" name="confirmPassword" id=""
-                       placeholder="Confirm Password"/>
-            </div>
-            <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-                     fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                          clip-rule="evenodd"/>
-                </svg>
-                <input class="pl-2 outline-none border-none" type="file" name="image" id="image"/>
-            </div>
-            <button type="submit" name="postRequest"
-                    class="block w-full bg-slate-900 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Sign Up
-            </button>
-            <?= (isset($_GET["error"])) ? "<p class='text-red-500 font-bold flex justify-center transition-opacity duration-500 ease-in-out opacity-100'>" . $_GET["error"] . "</p>" : ""; ?>
+        <form id="loginForm" method="post" enctype="multipart/form-data">
+            <div id="loginInput"
+                 class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                <div id="formGroup" class="input-group relative">
+                    <div class="flex items-center">
+                        <input required
+                               id="username" name="username" type="text"
+                               class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                               placeholder="Email address" minlength="10"/>
+                        <label for="username"
+                               class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Username
+                            </label>
+                        <span class="success-icon hidden text-green-700">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                        <span class="error-icon hidden text-red-700">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                    </div>
+                    <div class="error text-red-700 text-sm py-2"></div>
+                </div>
+                <div id="formGroup" class="input-group relative">
+                    <div class="flex items-center">
+                        <input required
+                               pattern="^(.+)@(.+)$"
+                               id="email" name="email" type="email"
+                               class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                               placeholder="Email address"  minlength="10"/>
+                        <label for="email"
+                               class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email
+                            Address</label>
+                        <span class="success-icon hidden text-green-700">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                        <span class="error-icon hidden text-red-700">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                    </div>
+                    <div class="error text-red-700 text-sm py-2"></div>
+                </div>
 
+                <div id="formGroup" class="input-group relative">
+                    <div class="flex items-center">
+                        <input required id="password" name="password" type="password"
+                               class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                               placeholder="Password"/>
+                        <label for="password"
+                               class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+                        <span class="success-icon hidden text-green-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                        <span class="error-icon hidden text-red-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                    </div>
+                    <div class="error text-red-700 text-sm py-2"></div>
+                </div>
+                <div id="formGroup" class="input-group relative">
+                    <div class="flex items-center">
+                        <input required id="password" name="password" type="password"
+                               class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                               placeholder="Password"/>
+                        <label for="password"
+                               class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+                        <span class="success-icon hidden text-green-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                        <span class="error-icon hidden text-red-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                    </div>
+                    <div class="error text-red-700 text-sm py-2"></div>
+                </div>
+                <div id="formGroup" class="input-group relative">
+                    <div class="flex items-center">
+                        <input required id="password" name="password" type="password"
+                               class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                               placeholder="Password"/>
+                        <label for="password"
+                               class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+                        <span class="success-icon hidden text-green-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                        <span class="error-icon hidden text-red-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                    </div>
+                    <div class="error text-red-700 text-sm py-2"></div>
+                </div>
+                <div id="formGroup" class="input-group relative">
+                    <div class="flex items-center">
+                        <input required id="password" name="password" type="password"
+                               class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                               placeholder="Password"/>
+                        <label for="password"
+                               class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+                        <span class="success-icon hidden text-green-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                        <span class="error-icon hidden text-red-700 ">
+                                        <i class='bx bx-error-circle'></i>
+                                        </span>
+                    </div>
+                    <div class="error text-red-700 text-sm py-2"></div>
+                </div>
+
+                <div class="relative">
+                    <button type="submit" id="submit" name="postRequest"
+                            class="bg-slate-900 text-white rounded-md px-2 py-1">
+                        Log in
+                    </button>
+                </div>
+            </div>
         </form>
+
+
     </div>
 </div>
 <?php require_once APP_ROOT . "/Views/Components/scripts.php" ?>
