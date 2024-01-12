@@ -15,7 +15,7 @@
         <div class="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
     </div>
     <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
-        <form id="loginForm" method="post" enctype="multipart/form-data">
+        <form id="loginForm" action="" method="post" enctype="multipart/form-data">
             <div id="loginInput"
                  class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div id="formGroup" class="input-group relative">
@@ -73,7 +73,7 @@
                 </div>
                 <div id="formGroup" class="input-group relative">
                     <div class="flex items-center">
-                        <input required id="passwordConfirm" name="passwordConfirm" type="password"
+                        <input required id="passwordConfirm" name="confirmPassword" type="password"
                                class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                placeholder="Confirm Password"/>
                         <label for="Confirmpassword"

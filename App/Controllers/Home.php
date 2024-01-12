@@ -33,7 +33,9 @@ class Home extends \App\Core\Controller
     public function save()
     {
         if (isset($_POST["postRequest"])) {
-            $tags = $_POST["tags"];
+            if(isset($_POST["tags"])){
+                $tags = $_POST["tags"];
+            }
             unset($_POST["tags"]);
             $_POST["authorId"] = user_session("userId");
             $result = filterInput($_POST, $_FILES["image"]);
