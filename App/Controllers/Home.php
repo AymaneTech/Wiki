@@ -29,14 +29,11 @@ class Home extends \App\Core\Controller
         $result = $this->wikiService->search("clean");
 
         if (!empty($result)) {
-            var_dump($result);
-
-            $json = json_encode($result);
-
-            if ($json === false) {
-                var_dump(json_last_error(), json_last_error_msg());
+            if ($result === false) {
+                var_dump (json_last_error(), json_last_error_msg());
             } else {
-                var_dump($json);
+                $data = ["wikiSearchResult" => $result];
+
             }
         } else {
             echo 'no data found';

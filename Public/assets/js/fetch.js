@@ -27,7 +27,8 @@ function fetchData(value) {
         })
 }
 function displayResponse(data){
-    console.log(data);
+    let result = JSON.parse(data);
+    console.log(result);
 
 }
 

@@ -71,7 +71,6 @@ abstract class Model
             die("error in selecting" . $e->getMessage());
         }
     }
-
     protected function delete($column, $value)
     {
         try {
