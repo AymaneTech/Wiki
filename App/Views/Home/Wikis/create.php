@@ -21,13 +21,10 @@ component("author-sidebar");
         </span>
                             <span class="error-icon hidden text-red-700">
             <i class='bx bx-error-circle'></i>
-        </span>
+                      </span>
                             <p class="error text-red-700 text-sm py-2"></p>
                         </div>
                     </div>
-
-
-
                     <div class="flex flex-col ml-2 gap-4">
                         <label for="Description" class="text-lx ">Description:</label>
                         <div class="input-group relative ">

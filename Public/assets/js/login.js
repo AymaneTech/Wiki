@@ -86,13 +86,13 @@ const validateForm = formSelector => {
     });
     formElement.addEventListener('submit', event => {
         if (validateAllGroups(formElement)) {
-            formElement.removeAttribute('novalidate');
             console.log("if validation")
         } else {
             console.log("else validation failed");
             event.preventDefault();
             console.log("Form has errors. Please fix them before submitting.");
         }
+            formElement.removeAttribute('novalidate');
     });
 };
 validateForm("#loginForm");

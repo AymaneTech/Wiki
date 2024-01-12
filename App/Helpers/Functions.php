@@ -14,7 +14,6 @@ function dd($var)
 }
 function checkEmail($email): bool  { return (bool)filter_var($email, FILTER_VALIDATE_EMAIL);}
 function checkString($string):bool { return (bool)filter_var($string, FILTER_SANITIZE_FULL_SPECIAL_CHARS);}
-
 function checkPasswords($password, $passwordConfirmation): bool
 {
     if ($password === $passwordConfirmation) { return true; }
@@ -78,6 +77,12 @@ function redirect ($location){
 
 function verifyPassword($value, $hash):bool { return password_verify($value, $hash); }
 function isLoggedIn() :bool { return isset($_SESSION["user"]);}
+function logout(){
+    session_start();
+    session_unset();
+    session_destroy();
+    redirect("users/login");
+}
 function checkAuthorPermission(){
     if (!isLoggedIn()){
         redirect("users/login");
