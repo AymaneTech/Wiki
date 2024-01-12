@@ -72,7 +72,7 @@ component("author-sidebar");
                             <label for="image" class="text-lx ">Category:</label>
                             <select name="category" id="category">
                                 <?php foreach ($categories as $category): ?>
-                                    <option value="<?= $category->categoryId ?>"><?= $category->categoryName ?></option>
+                                    <option value="<?= $category->__get("categoryId") ?>"><?= $category->__get("categoryName") ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -82,8 +82,8 @@ component("author-sidebar");
                         <div class="flex flex-wrap items-start ml-2 gap-4">
                             <?php foreach ($tags as $tag): ?>
                                 <div class="flex items-center justify-center gap-4">
-                                    <input type="checkbox" value="<?= $tag->tagId ?>" name="tags[]" id="">
-                                    <label for="checkbox"><?= $tag->tagName ?></label>
+                                    <input type="checkbox" value="<?= $tag->__get("tagId") ?>" name="tags[]" id="">
+                                    <label for="checkbox"><?= $tag->__get("tagName") ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </div>

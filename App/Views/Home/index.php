@@ -3,7 +3,6 @@ extract($data, EXTR_SKIP);
 component("head");
 isLoggedIn() ? component("author-header") : component("visitor-header");
 ?>
-<div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
 <main id="mainContainer" class="container mx-auto my-8">
     <section class="container mx-auto py-32">
         <div class="parent flex justify-between">

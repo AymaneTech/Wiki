@@ -121,6 +121,18 @@ abstract class Model
         }
     }
 
+    public function searchByColumn($column, $value)
+    {
+        try {
+            $stmt = $this->dbh->prepare("SELECT * FROM {$this->tableName} where {$column} LIKE  ?");
+            $searchValue = "%" . $value . "%";
+            $stmt->execute([$searchValue]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            die("error in deleting" . $e->getMessage());
+        }
+    }
+
     public function insertTag($data)
     {
         extract($data, EXTR_SKIP);
@@ -129,8 +141,8 @@ abstract class Model
         $stmt->bindParam(":wikiId", $wikiId);
         $stmt->execute();
     }
-    public
-    function lastInsertId()
+
+    public function lastInsertId()
     {
         return $this->dbh->lastInsertId();
     }

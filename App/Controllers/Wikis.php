@@ -10,7 +10,8 @@ class Wikis extends Controller
 
     public function __construct()
     {
-        $this->wikiService = $this->service('WikiService');
+       $this->wikiService = $this->service('WikiService');
+
     }
     public function manageWiki ($id = 1){
         $categories = $this->service('CategoryService');
@@ -51,7 +52,6 @@ class Wikis extends Controller
                 exit();
             }
             $this->wikiService->updateWiki($result);
-
             redirect("home/wiki/dashboard");
         }
     }

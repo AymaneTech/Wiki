@@ -26,7 +26,21 @@ class Home extends \App\Core\Controller
         $this->view("home/index", $data);
     }
     public function search(){
-        $this->wikiService->search(post("value"));
+        $result = $this->wikiService->search("clean");
+
+        if (!empty($result)) {
+            var_dump($result);
+
+            $json = json_encode($result);
+
+            if ($json === false) {
+                var_dump(json_last_error(), json_last_error_msg());
+            } else {
+                var_dump($json);
+            }
+        } else {
+            echo 'no data found';
+        }
     }
     public function create()
     {

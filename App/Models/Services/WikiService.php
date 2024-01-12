@@ -58,6 +58,11 @@ class WikiService
         }
         return $array;
     }
+    public function search($searchValue){
+        $wikiEntity = new WikiEntity($searchValue);
+        $wikiEntity->__set("wikiTitle", $searchValue);
+        return $this->wikiRepository->search($wikiEntity);
+    }
 
     public function getAuthorWikis($userId): array
     {

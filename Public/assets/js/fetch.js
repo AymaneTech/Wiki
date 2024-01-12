@@ -11,14 +11,13 @@ searchBox.addEventListener("input", (event) => {
         mainContainer.innerHTML = oldContent;
     }
 })
-
 function fetchData(value) {
     const options = {
         method: "POST",
         headers: {
-            "content-type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
         },
-        body:`value=${value}`
+        body:JSON.stringify(value)
     }
     fetch("http://localhost/wiki/home/search", options)
         .then(handleResponse)
@@ -36,5 +35,5 @@ function handleResponse(response) {
     if (!response.ok) {
         throw new Error(`sending request error! Status: ${response.status}`);
     }
-    return response.text();
+    return response.json();
 }
