@@ -8,8 +8,8 @@
                 <div class="relative z-10 flex space-x-2 bg-white border rounded-lg shadow-sm shadow-gray-100">
                     <div class="flex-[1_0_0%]">
                         <label for="hs-search-article-1" class="block text-sm text-gray-700 font-medium"><span
-                       z             class="sr-only">Search article</span></label>
-                        <input type="email" name="hs-search-article-1" id="hs-search-article-1"
+                                 class="sr-only">Search article</span></label>
+                        <input id="searchBox"  type="text" name="hs-search-article-1"
                                class="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500"
                                placeholder="Search article">
                     </div>

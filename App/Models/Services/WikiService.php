@@ -51,8 +51,29 @@ class WikiService
             $authorEntity->__set("userId", $wiki->authorId);
             $category = $this->fillCategoryEntity($categoryEntity);
             $author = $this->fillAuthorEntity($authorEntity);
-
             $wikiEntity = new WikiEntity($wiki->wikiTitle, $wiki->wikiDescription, $wiki->wikiContent, $wiki->wikiImage, $wiki->createdAt, $wiki->wikiId);
+            $wikiEntity->__set("category", $category);
+            $wikiEntity->__set("author", $author);
+            $array[] = $wikiEntity;
+        }
+        return $array;
+    }
+    public function search($searchValue){
+        $array = [];
+        $wikiEntity = new WikiEntity($searchValue);
+        $wikiEntity->__set("wikiTitle", $searchValue);
+        $result =  $this->wikiRepository->search($wikiEntity);
+        foreach($result as $wiki){
+            $categoryEntity = new CategoryEntity();
+            $authorEntity = new UserEntity();
+            $categoryEntity->__set("categoryId", $wiki->categoryId);
+            $authorEntity->__set("userId", $wiki->authorId);
+            $category = $this->fillCategoryEntity($categoryEntity);
+            $author = $this->fillAuthorEntity($authorEntity);
+
+            $image = base64_encode($wiki->wikiImage);
+            $image = json_encode($image);
+            $wikiEntity = new WikiEntity($wiki->wikiTitle, $wiki->wikiDescription, $wiki->wikiContent, $image, $wiki->createdAt, $wiki->wikiId);
             $wikiEntity->__set("category", $category);
             $wikiEntity->__set("author", $author);
             $array[] = $wikiEntity;

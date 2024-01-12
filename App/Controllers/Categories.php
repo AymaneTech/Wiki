@@ -12,7 +12,7 @@ class Categories extends Controller
 
     public function __construct()
     {
-        $this->categoryService = $this->model("CategoryService");
+        $this->categoryService = $this->service("CategoryService");
     }
 
     public function index()
@@ -29,7 +29,8 @@ class Categories extends Controller
     public function save()
     {
         if (isset($_POST["postRequest"])) {
-            $result = filterInput($_POST, $_FILES["categoryImage"]);
+            $result = filterInput($_POST);
+            $result["image"] = getImage($_FILES["categoryImage"]);
             if (!empty($result[0])) {
                 $this->view("Admin/Category/create", $result);
                 exit();
@@ -49,7 +50,8 @@ class Categories extends Controller
     {
         if (isset($_POST["postRequest"])) {
             $file = $_FILES['categoryImage'] ?? null;
-            $result = filterInput($_POST, $_FILES["categoryImage"]);
+            $result = filterInput($_POST);
+            $result["image"] = getImage($_FILES["image"]);
             if (!empty($result["errors"])) {
                 $this->view("Admin/Category/edit", $result);
                 exit();

@@ -48,7 +48,7 @@ abstract class Model
             $pagination = (int)$pagination;
             $offset = ($pagination - 1) * $limit;
             $columns = implode(',', $this->columns);
-            $stmt = $this->dbh->prepare("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 LIMIT :offset, :limit");
+            $stmt = $this->dbh->prepare("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 ORDER BY createdAt ASC LIMIT :offset, :limit");
 
             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -71,7 +71,6 @@ abstract class Model
             die("error in selecting" . $e->getMessage());
         }
     }
-
     protected function delete($column, $value)
     {
         try {
@@ -121,6 +120,18 @@ abstract class Model
         }
     }
 
+    public function searchByColumn($column, $value)
+    {
+        try {
+            $stmt = $this->dbh->prepare("SELECT * FROM {$this->tableName} where {$column} LIKE  ?");
+            $searchValue = "%" . $value . "%";
+            $stmt->execute([$searchValue]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            die("error in deleting" . $e->getMessage());
+        }
+    }
+
     public function insertTag($data)
     {
         extract($data, EXTR_SKIP);
@@ -129,8 +140,8 @@ abstract class Model
         $stmt->bindParam(":wikiId", $wikiId);
         $stmt->execute();
     }
-    public
-    function lastInsertId()
+
+    public function lastInsertId()
     {
         return $this->dbh->lastInsertId();
     }

@@ -85,4 +85,8 @@ class WikiRepository extends \App\Core\Model
     {
         return $this->findOneByColumn("wikiId", $wikiEntity->__get("wikiId"));
     }
+    public function search(WikiEntity $wikiEntity){
+        $searchValue = $wikiEntity->__get("wikiTitle");
+        return $this->searchByColumn("wikiTitle", $searchValue);
+    }
 }

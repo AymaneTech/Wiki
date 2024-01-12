@@ -13,7 +13,6 @@ class userService
     {
         $this->user = new UserRepository();
     }
-
     public function register($data)
     {
         $userEntity = new UserEntity($data["email"], $data["password"], $data["username"], isset($data["image"])?$data["image"]: null);
