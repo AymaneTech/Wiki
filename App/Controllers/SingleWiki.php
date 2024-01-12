@@ -11,6 +11,6 @@ class SingleWiki extends Controller
     }
     public function index($wikiId){
         $singleWiki = $this->wikiService->getSingleWiki($wikiId);
-        $this->view("workspace/wikis/singleWiki", ["wiki" => $singleWiki]);
+        $this->view("home/wikis/singleWiki", ["wiki" => $singleWiki]);
     }
 }

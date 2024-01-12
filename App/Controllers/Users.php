@@ -24,7 +24,7 @@ class Users extends \App\Core\Controller
                 $this->view("Auth/login");
             } else {
                 unset($_SESSION["error"]);
-                echo "<script>window.location.replace('http://localhost/wiki/workspace')</script>";
+                echo "<script>window.location.replace('http://localhost/wiki/home')</script>";
             }
         }
     }

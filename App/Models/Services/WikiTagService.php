@@ -17,7 +17,7 @@ class WikiTagService
         foreach($tagsArray as $tag){
             $tagEntity = new tagEntity();
             $wikiEntity = new wikiEntity();
-            $tagEntity->__set("tagId", $tag[0]);
+            $tagEntity->__set("tagId", $tag);
             $wikiEntity->__set("wikiId", $wikiId);
             $tagWikiEntity = new WikiTagEntity($tagEntity, $wikiEntity);
             $this->wikiTagRepository->saveWikiTag($tagWikiEntity);

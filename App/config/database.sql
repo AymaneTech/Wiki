@@ -19,14 +19,11 @@ CREATE TABLE category
     categoryImage       mediumblob
 );
 
-
-
 CREATE TABLE tag
 (
     tagId   int auto_increment primary key,
     tagName varchar(255)
 );
-
 CREATE TABLE wiki
 (
     wikiId          int auto_increment primary key,
@@ -38,7 +35,9 @@ CREATE TABLE wiki
     categoryId      int,
     FOREIGN KEY (authorId) REFERENCES users (userId) ON DELETE CASCADE,
     FOREIGN KEY (categoryId) REFERENCES category (categoryId) ON DELETE CASCADE,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TIMESTAMP,
+    isArchived int
 );
 CREATE TABLE wikiTag
 (
@@ -51,13 +50,6 @@ CREATE TABLE wikiTag
 ALTER TABLE users
 ADD COLUMN role int;
 
-ALTER TABLE wiki
-ADD COLUMN isArchived int;
-update wiki set isArchived = 1 where isArchived = null;
-
-alter table wiki add column updatedAt timestamp;
-
-
 DELIMITER //
 CREATE TRIGGER if not exists after_update_wikis
     AFTER UPDATE ON wiki
@@ -67,5 +59,3 @@ BEGIN
 END;
 //
 DELIMITER ;
-drop trigger after_update_wikis;
-

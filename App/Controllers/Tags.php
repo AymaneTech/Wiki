@@ -33,14 +33,12 @@ class Tags extends Controller
         $this->tagService->deleteTag(post("deleteId"));
         redirect("tags");
     }
-
     public function edit()
     {
             $data[0] = $this->tagService->getTags();
             $data[1] = $this->tagService->findById(post("editId"));
             $this->view("Admin/Tag/index", $data);
     }
-
     public function update()
     {
         if (isset($_POST["postRequest"])) {

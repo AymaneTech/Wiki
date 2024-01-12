@@ -40,8 +40,6 @@ function filterInput($inputData, $file = null): array
             $errors[] = $key . ' is required';
         } else {
             $value = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
-            trimValue($value);
-            $value = preg_replace('/[^a-zA-Z0-9]/', '', $value);
             $data[$key] = $value;
         }
     }

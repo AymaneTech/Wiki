@@ -13,6 +13,6 @@ class wikiTagRepository extends \App\Core\Model
             "tagId" => $wikiTag->__get("tag")->__get("tagId"),
             "wikiId" => $wikiTag->__get("wiki")->__get("wikiId"),
         ];
-        $this->save($data);
+        $this->insertTag($data);
     }
 }

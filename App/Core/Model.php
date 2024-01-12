@@ -53,7 +53,7 @@ abstract class Model
             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
             $stmt->execute();
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             die($e->getMessage());
         }
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -115,13 +115,22 @@ abstract class Model
             $stmt = $this->dbh->prepare("SELECT * FROM {$this->tableName} WHERE {$column} = ?");
             $stmt->bindParam(1, $value);
             $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             die("error in finding one by column method in base model column =>  {$column}, value =>  {$value} " . $e->getMessage());
         }
-        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function lastInsertId()
+    public function insertTag($data)
+    {
+        extract($data, EXTR_SKIP);
+        $stmt = $this->dbh->prepare("INSERT INTO wikiTag (tagId, wikiId) values (:tagId, :wikiId)");
+        $stmt->bindParam(":tagId", $tagId);
+        $stmt->bindParam(":wikiId", $wikiId);
+        $stmt->execute();
+    }
+    public
+    function lastInsertId()
     {
         return $this->dbh->lastInsertId();
     }
