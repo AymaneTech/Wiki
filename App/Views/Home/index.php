@@ -4,7 +4,7 @@ component("head");
 isLoggedIn() ? component("author-header") : component("visitor-header");
 ?>
 <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
-<main class="container mx-auto my-8">
+<main id="mainContainer" class="container mx-auto my-8">
     <section class="container mx-auto py-32">
         <div class="parent flex justify-between">
             <div class="left w-[40vw] flex flex-col gap-8">

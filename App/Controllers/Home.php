@@ -25,7 +25,9 @@ class Home extends \App\Core\Controller
         $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wikis" => $allwikis, "randomCategories" => $randomCategories];
         $this->view("home/index", $data);
     }
-
+    public function search(){
+        $this->wikiService->search(post("value"));
+    }
     public function create()
     {
         $categories = $this->service('CategoryService');

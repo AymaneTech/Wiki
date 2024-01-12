@@ -2,5 +2,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="<?= APP_URL ?>/public/assets/js/dashboard.js"></script>
 <script src="<?= APP_URL ?>/public/assets/js/login.js"></script>
+<script src="<?= APP_URL ?>/public/assets/js/fetch.js"></script>
 </body>
 </html>
