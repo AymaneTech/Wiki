@@ -3,7 +3,7 @@
 namespace App\Core;
 class Controller
 {
-    public function model($model)
+    public function service($model)
     {
         $modelClass = 'App\\Models\\services\\' . $model;
         if (class_exists($modelClass)) {

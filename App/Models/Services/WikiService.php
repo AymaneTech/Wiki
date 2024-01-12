@@ -51,7 +51,6 @@ class WikiService
             $authorEntity->__set("userId", $wiki->authorId);
             $category = $this->fillCategoryEntity($categoryEntity);
             $author = $this->fillAuthorEntity($authorEntity);
-
             $wikiEntity = new WikiEntity($wiki->wikiTitle, $wiki->wikiDescription, $wiki->wikiContent, $wiki->wikiImage, $wiki->createdAt, $wiki->wikiId);
             $wikiEntity->__set("category", $category);
             $wikiEntity->__set("author", $author);

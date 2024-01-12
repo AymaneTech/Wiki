@@ -11,7 +11,7 @@ class Users extends \App\Core\Controller
 
     public function __construct()
     {
-        $this->userService = $this->model("userService");
+        $this->userService = $this->service("userService");
     }
 
     public function login()
@@ -34,17 +34,16 @@ class Users extends \App\Core\Controller
         $this->view("Auth/register");
         if (isset($_POST["postRequest"])) {
             if (isset($_FILES) && $_FILES["image"]["size"] > 0) {
-                $result = filterInput($_POST, $_FILES["image"]);
-            } else {
                 $result = filterInput($_POST);
+                $result["image"] = getImage($_FILES["image"]);
             }
-            if (!empty($result[0])) {
+            if (!empty($result["error"])) {
                 $this->view("Auth/register", $result);
                 exit();
             }
-            $email = checkEmail($result["email"]);
+            $checkEmail = checkEmail($result["email"]);
             $checkPassword = checkPasswords($result["password"], $result["confirmPassword"]);
-            if (!$checkPassword) {
+            if (!$checkPassword || !$checkEmail) {
                 $this->view("Auth/register", $result);
                 exit();
             }

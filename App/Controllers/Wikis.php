@@ -10,11 +10,11 @@ class Wikis extends Controller
 
     public function __construct()
     {
-        $this->wikiService = $this->model('WikiService');
+        $this->wikiService = $this->service('WikiService');
     }
     public function manageWiki ($id = 1){
-        $categories = $this->model('CategoryService');
-        $tags = $this->model('TagService');
+        $categories = $this->service('CategoryService');
+        $tags = $this->service('TagService');
         if($id > 1){
             $result = $this->wikiService->getWikis($id);
         }else {
@@ -34,23 +34,25 @@ class Wikis extends Controller
     }
     public function delete(){
             $this->wikiService->deleteWiki(post("deleteId"));
-           echo "<script>window.location.replace('http://localhost/wiki/home/authorDashboard')</script>";
+           echo "<script>window.location.replace('http://localhost/wiki/home/dashboard')</script>";
     }
     public function edit($id){
-        $categories = $this->model('CategoryService');
-        $tags = $this->model('TagService');
+        $categories = $this->service('CategoryService');
+        $tags = $this->service('TagService');
         $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wiki" => $this->wikiService->editWiki($id)];
         $this->view("home/wikis/edit", $data);
     }
     public function update(){
         if(isset($_POST["postRequest"])){
-            $result = filterInput($_POST, $_FILES["image"]);
+            $result = filterInput($_POST);
+            $result["image"] = getImage($_FILES["image"]);
             if (!empty($result[0])) {
-                $this->view("home/authorDashboard", $result);
+                $this->view("home/wikis/dashboard", $result);
                 exit();
             }
             $this->wikiService->updateWiki($result);
-            redirect("home/authorDashboard");
+
+            redirect("home/wiki/dashboard");
         }
     }
     public function category($categoryId){

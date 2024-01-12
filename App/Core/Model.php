@@ -48,7 +48,7 @@ abstract class Model
             $pagination = (int)$pagination;
             $offset = ($pagination - 1) * $limit;
             $columns = implode(',', $this->columns);
-            $stmt = $this->dbh->prepare("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 LIMIT :offset, :limit");
+            $stmt = $this->dbh->prepare("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 ORDER BY createdAt ASC LIMIT :offset, :limit");
 
             $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
             $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);

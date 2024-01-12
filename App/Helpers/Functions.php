@@ -19,18 +19,17 @@ function checkPasswords($password, $passwordConfirmation): bool
     if ($password === $passwordConfirmation) { return true; }
     else { return false; }
 }
-
 function getImage($file)
 {
     $tmp = $file["tmp_name"];
     return file_get_contents($tmp);
 }
-
-function filterInput($inputData, $file = null): array
+function filterInput($inputData): array
 {
     $errors = [];
     $data = [];
     unset($_POST["postRequest"]);
+
     foreach ($_POST as $key => $value) {
         if (is_array($value)) {
             $data["tags"] = $value;
@@ -42,14 +41,12 @@ function filterInput($inputData, $file = null): array
             $data[$key] = $value;
         }
     }
-    if (!($file == null)) {
-        $data["image"] = getImage($file);
-    }
     if (!empty($errors)) {
         return $errors;
     }
     return $data;
 }
+
 
 function loop($data)
 {
@@ -67,12 +64,13 @@ function user_session($var)
 }
 function error ($message){
     echo "<br> 
-           <strong style='color:red; font-weight:bold; font-size: 20px;' class='font-bold'>Error:  {$message}</strong>
+           <strong style='margin-left:50px; color:red; font-weight:bold; font-size: 20px;' class='font-bold'>Error:  <?php var_dump($message)?></strong>
            <br> <br>";
     die("program stoped");
 }
 function redirect ($location){
     header("Location: ".APP_URL. $location );
+    exit();
 }
 
 function verifyPassword($value, $hash):bool { return password_verify($value, $hash); }

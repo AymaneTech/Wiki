@@ -10,7 +10,7 @@ class Tags extends Controller
 
     public function __construct()
     {
-        $this->tagService = $this->model("TagService");
+        $this->tagService = $this->service("TagService");
     }
 
     public function index()
