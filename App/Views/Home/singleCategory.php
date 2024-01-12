@@ -1,5 +1,6 @@
 <?php
 extract($data, EXTR_SKIP);
+die();
 component("head");
 isLoggedIn() ? component("author-header") : component("visitor-header");
 ?>
@@ -9,7 +10,7 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
     <?php foreach ($wikis as $wiki) : ?>
         <article class="custom-card p-4 flex flex-col md:flex-row bg-white shadow-lg rounded-lg w-full md:max-w-full overflow-hidden transition-transform hover:scale-105">
             <div class="md:mr-6 h-fit">
-                <img class="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover shadow" src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->author->userImage) ?>" alt="avatar">
+                <img class="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover shadow" src="<?=STORAGE . $wiki->author->userImage ?>" alt="avatar">
             </div>
             <div class="flex-1 flex flex-col justify-between py-6 px-4">
                 <div>
@@ -30,7 +31,7 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
                 </div>
             </div>
             <div class="flex-shrink-0">
-                <img class="w-48 h-48 md:w-64 md:h-64 rounded-lg object-cover" src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->wikiImage) ?>" alt="wiki-image">
+                <img class="w-48 h-48 md:w-64 md:h-64 rounded-lg object-cover" src="<?=STORAGE . $wiki->wikiImage ?>" alt="wiki-image">
             </div>
         </article>
     <?php endforeach; ?>

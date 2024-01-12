@@ -12,4 +12,5 @@ define("DB_NAME", 'wiki');
 define("APP_ROOT", dirname(dirname(__FILE__)));
 define("APP_URL", "http://localhost/wiki/");
 define("SITE_NAME", 'wiki');
+define ("STORAGE", "storage/");
 

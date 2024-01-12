@@ -1,6 +1,6 @@
 <?php
 
-function dd($var)
+function dd($var = "")
 {
     if(isset($var["image"])){
         unset($var["image"]);
@@ -21,8 +21,29 @@ function checkPasswords($password, $passwordConfirmation): bool
 }
 function getImage($file)
 {
-    $tmp = $file["tmp_name"];
-    return file_get_contents($tmp);
+    $errors = [];
+    $allowed_ext = ["jpg", "jpeg", "png"];
+    $name = $file["name"];
+    $tmp_name = $file["tmp_name"];
+
+    $ext = pathinfo($name, PATHINFO_EXTENSION);
+    $filename = "IMG-". uniqid(). ".". $ext;
+    if($file["size"] > 5000000){
+        $errors[] = "the image cannot be greater than 2MB";
+    }
+    if(!in_array($ext, $allowed_ext)){
+        $errors[] = "The image can only be of .jpg, .jpeg or .png format";
+    }
+    if (empty($errors)) {
+        move_uploaded_file($file["tmp_name"], STORAGE.$filename);
+    }
+    return [
+        "name" => $filename,
+        "errors"=> $errors
+    ];
+
+
+
 }
 function filterInput($inputData): array
 {
@@ -41,10 +62,10 @@ function filterInput($inputData): array
             $data[$key] = $value;
         }
     }
-    if (!empty($errors)) {
-        return $errors;
-    }
-    return $data;
+    return [
+        "data" => $data,
+        "errors" => $errors
+    ];
 }
 
 
@@ -87,6 +108,7 @@ function checkAuthorPermission(){
     }
 }
 function trimValue(&$value) { $value = trim($value); }
+
 function post($value){
     if(isset($_POST[$value])){ return $_POST[$value]; }
     else { die($value." is invalid"); }

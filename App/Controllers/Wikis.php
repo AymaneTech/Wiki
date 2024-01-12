@@ -46,13 +46,14 @@ class Wikis extends Controller
     public function update(){
         if(isset($_POST["postRequest"])){
             $result = filterInput($_POST);
-            $result["image"] = getImage($_FILES["image"]);
-            if (!empty($result[0])) {
-                $this->view("home/wikis/dashboard", $result);
-                exit();
+            $image = getImage($_FILES["image"]);
+            if(empty($image["errors"])){
+                $result["data"]["image"] = $image["name"];
+            }else {
+                redirect("wikis/edit");
             }
-            $this->wikiService->updateWiki($result);
-            redirect("home/wiki/dashboard");
+            $this->wikiService->updateWiki($result["data"]);
+            redirect("home");
         }
     }
     public function category($categoryId){

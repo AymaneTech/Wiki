@@ -12,7 +12,7 @@ component("admin-sidebar")
                 <label for="categoryName" class="block text-gray-700 text-sm font-semibold mb-2">Category Name</label>
                 <input id="categoryName" name="categoryName" type="text" placeholder="Enter the name of the category"
                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                       value="<?=$data->categoryName?>">
+                       value="<?=$data->__get("categoryName")?>">
             </div>
             <div class="mb-4">
                 <label for="categoryDescription" class="block text-gray-700 text-sm font-semibold mb-2">Category
@@ -20,7 +20,7 @@ component("admin-sidebar")
                 <input id="categoryDescription" name="categoryDescription" type="text"
                        placeholder="Enter the description of the category"
                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                       value="<?=$data->categoryDescription?>">
+                       value="<?=$data->__get("categoryDescription")?>">
             </div>
             <div class="mb-4">
                 <label for="categoryImage" class="block text-gray-700 text-sm font-semibold mb-2">Category Image</label>
@@ -28,7 +28,7 @@ component("admin-sidebar")
                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                        required>
             </div>
-            <input id="categoryId" name="categoryId" type="hidden" value="<?=$data->categoryId?>">
+            <input id="categoryId" name="categoryId" type="hidden" value="<?=$data->__get("categoryId")?>">
             <button name="postRequest"
                     class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
                 Update Category

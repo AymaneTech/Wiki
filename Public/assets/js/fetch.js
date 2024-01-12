@@ -17,8 +17,8 @@ function fetchData(value) {
         headers: {
             "Content-Type": "application/json",
         },
-        body:JSON.stringify(value)
-    }
+        body: JSON.stringify({ value: value }),
+    };
     fetch("http://localhost/wiki/home/search", options)
         .then(handleResponse)
         .then(displayResponse)
@@ -27,8 +27,7 @@ function fetchData(value) {
         })
 }
 function displayResponse(data){
-    let result = JSON.parse(data);
-    console.log(result);
+    console.log(JSON.stringify(data));
 
 }
 

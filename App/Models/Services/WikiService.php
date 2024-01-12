@@ -108,14 +108,13 @@ class WikiService
         $wikiEntity = new WikiEntity();
         $wikiEntity->__set("wikiId", $wikiId);
         $result = $this->wikiRepository->getSingleWiki($wikiEntity);
-        extract($result, EXTR_SKIP);
         $categoryEntity = new CategoryEntity();
         $authorEntity = new UserEntity();
-        $categoryEntity->__set("categoryId", $categoryId);
-        $authorEntity->__set("userId", $authorId);
+        $categoryEntity->__set("categoryId", $result->categoryId);
+        $authorEntity->__set("userId", $result->authorId);
         $category = $this->fillCategoryEntity($categoryEntity);
         $author = $this->fillAuthorEntity($authorEntity);
-        $singleWikiEntity = new WikiEntity($wikiTitle, $wikiDescription, $wikiContent, $wikiImage, $createdAt, $wikiId);
+        $singleWikiEntity = new WikiEntity($result->wikiTitle, $result->wikiDescription, $result->wikiContent, $result->wikiImage, $result->createdAt, $result->wikiId);
         $singleWikiEntity->__set("category", $category);
         $singleWikiEntity->__set("author", $author);
         return $singleWikiEntity;
@@ -197,13 +196,9 @@ class WikiService
     {
         $categoryRepository = new CategoryRepository();
         $result2 = $categoryRepository->findById($categoryEntity);
-        if (is_array($result2)) {
-            $categoryEntity->__set("categoryName", $result2[0]["categoryName"]);
-            $categoryEntity->__set("categoryDescription", $result2[0]["categoryDescription"]);
-            $categoryEntity->__set("categoryImage", $result2[0]["categoryImage"]);
-        } else {
-            dd("Error: Unable to retrieve category data.");
-        }
+            $categoryEntity->__set("categoryName", $result2->categoryName);
+            $categoryEntity->__set("categoryDescription", $result2->categoryDescription);
+            $categoryEntity->__set("categoryImage", $result2->categoryImage);
         return $categoryEntity;
     }
 

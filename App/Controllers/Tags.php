@@ -23,7 +23,7 @@ class Tags extends Controller
     {
         if (isset($_POST["postRequest"])) {
             $result = filterInput($_POST);
-            $this->tagService->saveTag($result);
+            $this->tagService->saveTag($result["data"]);
             redirect("Tags");
         }
     }
@@ -43,7 +43,7 @@ class Tags extends Controller
     {
         if (isset($_POST["postRequest"])) {
             $result = filterInput($_POST);
-            $this->tagService->updateTag($result);
+            $this->tagService->updateTag($result["data"]);
             redirect("tags");
         }
     }
