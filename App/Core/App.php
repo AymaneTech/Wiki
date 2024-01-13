@@ -6,6 +6,7 @@ class App
     protected $controller = "home";
     protected $method = "index";
     protected $params = [];
+
     public function __construct()
     {
         $url = $this->parseUrl();
@@ -24,8 +25,21 @@ class App
             }
         }
         $this->params = $url ? array_values($url) : [];
-        call_user_func_array([$this->controller, $this->method], $this->params);
+        try {
+            call_user_func_array([$this->controller, $this->method], $this->params);
+        } catch (\TypeError $e) {
+            if (str_contains($e->getMessage(), 'does not have a method')) {
+               redirect("Error");
+            } else {
+                throw $e;
+            }
+        } catch (\Exception $e) {
+            die("Caught an exception: " . $e->getMessage());
+        }
+
+
     }
+
     public function parseUrl()
     {
         if (isset($_GET['url'])) {

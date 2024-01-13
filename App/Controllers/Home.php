@@ -19,7 +19,9 @@ class Home extends \App\Core\Controller
         $wikis = $this->service('WikiService');
         $allwikis = $wikis->getPagination(1);
         if ($id !== 0) {
+            if(is_int($id)) {
             $allwikis = $wikis->getPagination($id);
+            }
         }
         $randomCategories = $categories->getCategories();
         shuffle($randomCategories);

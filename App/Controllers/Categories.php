@@ -71,7 +71,6 @@ class Categories extends Controller
 
         }
     }
-
     public function delete()
     {
             $this->categoryService->deleteCategory(post("deleteId"));

@@ -57,6 +57,7 @@
                                 </div>
                             </div>
                         </form>
+
                         <?= (isset($_SESSION["error"])) ? "<p class='text-red-500 font-bold flex justify-center transition-opacity duration-500 ease-in-out opacity-100'>" . $_SESSION["error"] . "</p>" : ""; ?>
 
                     </div>

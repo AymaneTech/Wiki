@@ -124,10 +124,13 @@ function isLoggedIn(): bool
 {
     return isset($_SESSION["user"]);
 }
-function isAdmin()
+function isAdmin():bool
 {
+    return isset($_SESSION["isAdmin"]);
+}
+function checkAdminPermission() {
     if(!isset($_SESSION["isAdmin"])){
-       redirect("accessPages/denied");
+        redirect("error/accessDenied");
     }
 }
 

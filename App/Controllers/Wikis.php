@@ -11,7 +11,9 @@ class Wikis extends Controller
     public function __construct()
     {
        $this->wikiService = $this->service('WikiService');
-
+    }
+    public function index(){
+        redirect("home");
     }
     public function manageWiki ($id = 1){
         $categories = $this->service('CategoryService');

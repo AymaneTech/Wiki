@@ -29,7 +29,9 @@ class userService
             return $_SESSION['error'] = "incorrect password";
         }else {
             $_SESSION['user'] = $result;
-            return $result;
+            if($result->role == 1){
+                $_SESSION['isAdmin'] = 1;
+            }
         }
     }
     public function getUsers() {
