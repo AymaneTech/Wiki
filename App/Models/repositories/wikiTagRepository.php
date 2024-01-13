@@ -15,4 +15,8 @@ class wikiTagRepository extends \App\Core\Model
         ];
         $this->insertTag($data);
     }
+    public function getWikiTags($wikiId){
+        parent::__construct("allwikitags");
+        return $this->findByColumn("wikiId", $wikiId);
+    }
 }

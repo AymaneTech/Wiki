@@ -114,7 +114,7 @@ abstract class Model
             $stmt = $this->dbh->prepare("SELECT * FROM {$this->tableName} WHERE {$column} = ?");
             $stmt->bindParam(1, $value);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             die("error in finding one by column method in base model column =>  {$column}, value =>  {$value} " . $e->getMessage());
         }

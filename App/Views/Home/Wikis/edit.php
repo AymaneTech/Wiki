@@ -30,8 +30,8 @@ component("author-sidebar");
                     <div class="flex gap-4 justify-between">
                         <div class="w-[40%] flex flex-col items-start ml-2 gap-4">
                             <label for="image" class="text-lx ">Add Cover Image:</label>
-                            <img class="w-[200px] h-[200px]" src="data:image/jpeg;charset=utf8;base64,<?=base64_encode($wiki->__get("wikiImage"))?>" alt="">
-                            <input type="file" placeholder="image" id="image" name="image" value="data:image/jpeg;charset=utf8;base64,<?=base64_encode($wiki->__get("wikiImage"))?>"
+                            <img class="w-[200px] h-[200px]" src="<?= STORAGE_PATH . $wiki->__get("wikiImage")?>" alt="">
+                            <input type="file" placeholder="image" id="image" name="image" value="<?= STORAGE_PATH . $wiki->__get("wikiImage")?>"
                                    class="outline-none py-1 px-2 text-md border-2 rounded-md"/>
                         </div>
                         <div class="w-[40%] flex flex-col items-start ml-2 gap-4">
@@ -55,6 +55,7 @@ component("author-sidebar");
                         </div>
                     </div>
                     <input type="hidden" name="wikiId" value="<?=$wiki->__get("wikiId")?>">
+                    <input type="hidden" name="oldImage" value="<?=$wiki->__get("wikiImage")?>"
                     <div class="flex justify-end items-center">
                         <button name="postRequest" class=" inline-flex justify-center items-center gap-x-8 text-center bg-gradient-to-tl from-blue-600 to-violet-600 shadow-lg shadow-transparent hover:shadow-blue-700/50 border border-transparent text-white text-xl font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-4 px-12 dark:focus:ring-offset-gray-800">
                             Update

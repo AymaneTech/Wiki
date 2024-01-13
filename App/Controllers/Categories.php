@@ -30,12 +30,17 @@ class Categories extends Controller
     {
         if (isset($_POST["postRequest"])) {
             $result = filterInput($_POST);
-            $result["image"] = getImage($_FILES["categoryImage"]);
-            if (!empty($result[0])) {
+            $image = getImage($_FILES["categoryImage"]);
+            if(empty($image["errors"])){
+                $result["data"]["image"] = $image["name"];
+            }else {
+                redirect("Categories");
+            }
+            if (!empty($result["errors"])) {
                 $this->view("Admin/Category/create", $result);
                 exit();
             }
-            $this->categoryService->saveCategory($result);
+            $this->categoryService->saveCategory($result["data"]);
             redirect("categories");
         }
     }
@@ -51,12 +56,17 @@ class Categories extends Controller
         if (isset($_POST["postRequest"])) {
             $file = $_FILES['categoryImage'] ?? null;
             $result = filterInput($_POST);
-            $result["image"] = getImage($_FILES["image"]);
+            $image = getImage($file);
+            if(empty($image["errors"])){
+                $result["data"]["image"] = $image["name"];
+            }else {
+                redirect("categories/edit");
+            }
             if (!empty($result["errors"])) {
-                $this->view("Admin/Category/edit", $result);
+                $this->view("categories/edit", $result);
                 exit();
             }
-            $this->categoryService->updateCategory($result);
+            $this->categoryService->updateCategory($result["data"]);
             redirect("categories");
 
         }

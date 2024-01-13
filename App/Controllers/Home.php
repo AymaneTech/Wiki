@@ -4,10 +4,12 @@ namespace App\Controllers;
 class Home extends \App\Core\Controller
 {
     private $wikiService;
+    private $categoryService;
 
     public function __construct()
     {
         $this->wikiService = $this->service('WikiService');
+        $this->categoryService = $this->service('CategoryService');
     }
 
     public function index($id = 0)
@@ -25,19 +27,14 @@ class Home extends \App\Core\Controller
         $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wikis" => $allwikis, "randomCategories" => $randomCategories];
         $this->view("home/index", $data);
     }
-    public function search(){
-        $result = $this->wikiService->search("clean");
 
-        if (!empty($result)) {
-            if ($result === false) {
-                var_dump (json_last_error(), json_last_error_msg());
-            } else {
-                $data = ["wikiSearchResult" => $result];
+    public function search()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $wikis = $this->wikiService->search($data["value"]);
+        $categories = $this->categoryService->search($data["value"]);
+        echo searchResult($wikis, $categories);
 
-            }
-        } else {
-            echo 'no data found';
-        }
     }
     public function create()
     {
@@ -50,21 +47,24 @@ class Home extends \App\Core\Controller
     public function save()
     {
         if (isset($_POST["postRequest"])) {
-            if (isset($_POST["tags"])) {
-                $tags = $_POST["tags"];
-            }
+            $tags = $_POST["tags"] ?? "";
             unset($_POST["tags"]);
             $_POST["authorId"] = user_session("userId");
             if (empty($_FILES["image"])) {
                 redirect("home/create");
-            }else {
+            } else {
                 $result = filterInput($_POST);
-                $result["image"] = getImage($_FILES["image"]);
+                $image = getImage($_FILES["image"]);
+                if (empty($image["errors"])) {
+                    $result["data"]["image"] = $image["name"];
+                } else {
+                    redirect("home/create");
+                }
             }
-            if (!empty($result[0])) {
+            if (!empty($result["errors"])) {
                 redirect("home/create");
             }
-            $lastInsertedId = $this->wikiService->saveWiki($result);
+            $lastInsertedId = $this->wikiService->saveWiki($result["data"]);
             $wikiTagService = $this->service("wikiTagService");
             $wikiTag = ["wikiId" => $lastInsertedId, "tagsArray" => $tags];
             $wikiTagService->saveWikiTag($wikiTag);

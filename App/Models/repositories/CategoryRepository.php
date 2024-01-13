@@ -30,23 +30,30 @@ class CategoryRepository extends Model
     public function findById(CategoryEntity $category)
     {
         $id = $category->__get("categoryId");
-        $result = array();
-        $result[] = $this->findOneByColumn("categoryId", $id);
-//        dd($result);
-        return $result;
+        return $this->findOneByColumn("categoryId", $id);
+
     }
-   public function updateCategory(CategoryEntity $category)
+
+    public function updateCategory(CategoryEntity $category)
     {
         $condition = ["categoryId" => $category->__get("categoryId")];
-        $data = [];
-        $data["categoryName"] = $category->__get("categoryName");
-        $data["categoryDescription"] = $category->__get("categoryDescription");
-        $data["categoryImage"] = $category->__get("categoryImage");
+
+        $data = ["categoryName" => $category->__get("categoryName"),
+            "categoryDescription" => $category->__get("categoryDescription"),
+            "categoryImage" => $category->__get("categoryImage"),
+        ];
         $this->update($data, $condition);
     }
+
     public function deleteCategory(CategoryEntity $category)
     {
         $id = $category->__get("categoryId");
         $this->delete("categoryId", $id);
+    }
+
+    public function search(CategoryEntity $categoryEntity)
+    {
+        $searchValue = $categoryEntity->__get("categoryName");
+        return $this->searchByColumn("categoryName", $searchValue);
     }
 }

@@ -2,6 +2,7 @@
 extract($data, EXTR_SKIP);
 component("head");
 component("author-header");
+
 ?>
 <div class="flex flex-col">
     <div class=" py-8">
@@ -15,12 +16,21 @@ component("author-header");
     <div class="bg-white py-8">
         <div class="container mx-auto px-4 flex flex-col md:flex-row">
             <div class="w-full md:w-full px-4">
-                <img src="data:image/jpeg;charset=utf8;base64, <?= base64_encode($wiki->__get("wikiImage")) ?>"
+                <img src="<?= STORAGE_PATH . $wiki->__get("wikiImage") ?>"
                      alt="Blog Featured Image" class="mb-8">
                 <div class="prose max-w-none">
+                        <div class="tagsGroup flex my-8">
+                            <?php foreach ($wikiTags as $tag): ?>
+                                <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+                                    <?= $tag->__get("tag")->__get("tagName") ?>
+                                </span>
+                            <?php endforeach; ?>
+                        </div>
                     <div class="info flex items-center justify-start gap-12 mb-8">
-                        <img class="rounded-full w-20 h-20"  src="data:image/jpeg;charset=utf8;base64, <?= base64_encode($wiki->__get("author")->__get("userImage")) ?>" alt="">
+                        <img class="rounded-full w-20 h-20"
+                             src="<?= STORAGE_PATH . $wiki->__get("author")->__get("userImage") ?>" alt="">
                         <strong class="text-lg"><?= $wiki->__get("author")->__get("username") ?></strong>
+
                     </div>
 
                     <strong class="text-3xl leading-10 my-12"><?= $wiki->__get("wikiDescription") ?></strong>
