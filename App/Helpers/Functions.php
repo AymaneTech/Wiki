@@ -124,6 +124,12 @@ function isLoggedIn(): bool
 {
     return isset($_SESSION["user"]);
 }
+function isAdmin()
+{
+    if(!isset($_SESSION["isAdmin"])){
+       redirect("accessPages/denied");
+    }
+}
 
 function logout()
 {
@@ -197,8 +203,6 @@ function wikisArray($wikis)
     }
     return $array;
 }
-
-
 function categoriesArray($categories)
 {
     $array = [];

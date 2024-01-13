@@ -33,22 +33,9 @@ class WikiRepository extends \App\Core\Model
     public function getPaginationWikis($pagination){
         return $this->getPagination($pagination);
     }
-
-    public function archiveWiki(WikiEntity $wikiEntity)
-    {
-        $id = $wikiEntity->__get("wikiId");
-        $data = ["isArchived" => 1];
-        $condition = ["wikiId" => $id];
-        $this->update($data, $condition);
+    public function getReversedWikis(){
+        return $this->getReversed();
     }
-    public function removeWikiFromArchive(WikiEntity $wikiEntity)
-    {
-        $id = $wikiEntity->__get("wikiId");
-        $data = ["isArchived" => 0];
-        $condition = ["wikiId" => $id];
-        $this->update($data, $condition);
-    }
-
     public function getAuthorWikis(UserEntity $userEntity)
     {
         $id = $userEntity->__get("userId");
@@ -89,4 +76,19 @@ class WikiRepository extends \App\Core\Model
         $searchValue = $wikiEntity->__get("wikiTitle");
         return $this->searchByColumn("wikiTitle", $searchValue);
     }
+    public function archiveWiki(WikiEntity $wikiEntity)
+    {
+        $id = $wikiEntity->__get("wikiId");
+        $data = ["isArchived" => 1];
+        $condition = ["wikiId" => $id];
+        $this->update($data, $condition);
+    }
+    public function removeWikiFromArchive(WikiEntity $wikiEntity)
+    {
+        $id = $wikiEntity->__get("wikiId");
+        $data = ["isArchived" => 0];
+        $condition = ["wikiId" => $id];
+        $this->update($data, $condition);
+    }
+
 }

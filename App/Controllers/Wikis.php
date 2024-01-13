@@ -35,7 +35,7 @@ class Wikis extends Controller
     }
     public function delete(){
             $this->wikiService->deleteWiki(post("deleteId"));
-           echo "<script>window.location.replace('http://localhost/wiki/home/dashboard')</script>";
+           echo "<script>window.location.replace('http://localhost/wiki/home/authorDashboard')</script>";
     }
     public function edit($id){
         $categories = $this->service('CategoryService');

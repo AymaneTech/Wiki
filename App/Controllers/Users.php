@@ -53,6 +53,7 @@ class Users extends \App\Core\Controller
             echo "<script>window.location.replace('http://localhost/wiki/users/login')</script>";
         }
     }
+
     public function logout(){
         logout();
     }
