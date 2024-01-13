@@ -103,6 +103,7 @@ class WikiService
         $wikiEntity->__set("category", $categoryEntity);
         $wikiEntity->__set("author", $authorEntity);
         return $this->wikiRepository->saveWiki($wikiEntity);
+
     }
 
     public function deleteWiki($id)
