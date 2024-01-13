@@ -14,7 +14,7 @@ class UserRepository extends \App\Core\Model
 
     public function register(UserEntity $user)
     {
-        $data = ["username" => $user->__get('username'), "email" => $user->__get('email'), "password" => $user->__get('password'), "userImage" => $user->__get('userImage')];
+        $data = ["username" => $user->__get('username'), "email" => $user->__get('email'), "password" => $user->__get('password'), "userImage" => $user->__get('userImage'), "role" => $user->__get('role')];
         $this->save($data);
     }
     public function login(UserEntity $user)

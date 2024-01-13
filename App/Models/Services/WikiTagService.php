@@ -23,5 +23,20 @@ class WikiTagService
             $this->wikiTagRepository->saveWikiTag($tagWikiEntity);
         }
     }
+    public function getWikiTags($wikiId){
+        $array = [];
+         $result = $this->wikiTagRepository->getWikiTags($wikiId);
+         foreach($result as $wikiTag){
+             $tagEntity = new tagEntity();
+             $wikiEntity = new wikiEntity();
+             $wikiEntity->__set("wikiId", $wikiTag->wikiId);
+             $tagEntity->__set("tagId", $wikiTag->tagId);
+             $tagEntity->__set("tagName", $wikiTag->tagName);
+
+             $wikiTag = new WikiTagEntity($tagEntity, $wikiEntity);
+             $array[] = $wikiTag;
+         }
+         return $array;
+    }
 
 }

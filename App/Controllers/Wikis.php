@@ -45,12 +45,15 @@ class Wikis extends Controller
     }
     public function update(){
         if(isset($_POST["postRequest"])){
+            $oldImage = $_POST["oldImage"];
+            unset($_POST["oldImage"]);
+
             $result = filterInput($_POST);
             $image = getImage($_FILES["image"]);
             if(empty($image["errors"])){
                 $result["data"]["image"] = $image["name"];
             }else {
-                redirect("wikis/edit");
+                $result["data"]["image"] = $oldImage;
             }
             $this->wikiService->updateWiki($result["data"]);
             redirect("home");

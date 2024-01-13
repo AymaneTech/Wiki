@@ -8,7 +8,7 @@ class UserEntity extends \App\Models\entities\CategoryEntity
     private $email;
     private $password;
     private $userImage;
-    private $role;
+    private $role = 2;
     public function __construct($email = "", $password = "", $username = "", $userImage = null, $role = 2, $userId = null){
         $this->userId = $userId;
         $this->username = $username;

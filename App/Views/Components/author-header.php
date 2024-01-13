@@ -26,7 +26,7 @@
             </form>
         </div>
         <div class="dropdown relative group">
-            <a href="<?=APP_URL?>home/create"
+            <a href="<?=APP_URL?>home/authorDashboard"
                class="inline-flex justify-center items-center gap-x-3 text-center bg-white shadow-lg shadow-transparent hover:shadow-gray-700/50 border border-transparent text-black text-sm font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-6 dark:focus:ring-offset-gray-800">
                 <i class='bx bx-edit'></i>
                 <span>Workspace</span>

@@ -50,4 +50,10 @@ class CategoryRepository extends Model
         $id = $category->__get("categoryId");
         $this->delete("categoryId", $id);
     }
+
+    public function search(CategoryEntity $categoryEntity)
+    {
+        $searchValue = $categoryEntity->__get("categoryName");
+        return $this->searchByColumn("categoryName", $searchValue);
+    }
 }

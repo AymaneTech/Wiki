@@ -4,10 +4,12 @@ namespace App\Controllers;
 class Home extends \App\Core\Controller
 {
     private $wikiService;
+    private $categoryService;
 
     public function __construct()
     {
         $this->wikiService = $this->service('WikiService');
+        $this->categoryService = $this->service('CategoryService');
     }
 
     public function index($id = 0)
@@ -29,10 +31,11 @@ class Home extends \App\Core\Controller
     public function search()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        $result = $this->wikiService->search($data["value"]);
-        echo json_encode($result);
-    }
+        $wikis = $this->wikiService->search($data["value"]);
+        $categories = $this->categoryService->search($data["value"]);
+        echo searchResult($wikis, $categories);
 
+    }
     public function create()
     {
         $categories = $this->service('CategoryService');

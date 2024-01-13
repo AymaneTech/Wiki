@@ -47,7 +47,7 @@ component("admin-header")
                                 </span>
                                 </td>
                                 <td class="py-2 px-4 border-b border-b-gray-300">
-                                    <img src="<?= STORAGE . $category->categoryImage?>"
+                                    <img src="<?= STORAGE_PATH . $category->categoryImage?>"
                                          alt="<?= $category->categoryName ?>"
                                          class="w-8 h-8 rounded object-cover block">
                                 </td>

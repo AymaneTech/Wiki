@@ -14,7 +14,7 @@ class App
             $this->controller = $controllerClassName;
             unset($url[0]);
         } else {
-            die("Controller class does not exist!");
+            $this->controller = "App\\Controllers\\home";
         }
         $this->controller = new $this->controller;
         if (isset($url[1])) {

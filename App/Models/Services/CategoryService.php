@@ -8,29 +8,29 @@ use App\Helpers\Functions;
 
 class CategoryService
 {
-    private CategoryRepository $category;
+    private CategoryRepository $categoryRepository;
 
     public function __construct()
     {
-        $this->category = new CategoryRepository();
+        $this->categoryRepository = new CategoryRepository();
     }
 
     public function saveCategory($category)
     {
         $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["image"]);
-        $this->category->saveCategory($categoryEntity);
+        $this->categoryRepository->saveCategory($categoryEntity);
     }
 
     public function updateCategory($category)
     {
         $categoryEntity = new CategoryEntity($category["categoryName"], $category["categoryDescription"], $category["image"], $category["categoryId"]);
-        $this->category->updateCategory($categoryEntity);
+        $this->categoryRepository->updateCategory($categoryEntity);
     }
 
     public function getCategories()
     {
         $array = [];
-        $categories = $this->category->getAllCategories();
+        $categories = $this->categoryRepository->getAllCategories();
         foreach ($categories as $category) {
             $categoryEntity = new CategoryEntity($category->categoryName, $category->categoryDescription, $category->categoryImage, $category->categoryId);
             $array[] = $categoryEntity;
@@ -42,15 +42,26 @@ class CategoryService
     {
         $categoryEntity = new categoryEntity();
         $categoryEntity->__set("categoryId", $id);
-        $this->category->deleteCategory($categoryEntity);
+        $this->categoryRepository->deleteCategory($categoryEntity);
     }
 
     public function findById($id)
     {
         $categoryEntity = new categoryEntity();
         $categoryEntity->__set("categoryId", $id);
-        $result = $this->category->findById($categoryEntity);
+        $result = $this->categoryRepository->findById($categoryEntity);
         return new categoryEntity($result->categoryName, $result->categoryDescription, $result->categoryImage, $result->categoryId);
+    }
+
+    public function search ($searchValue){
+        $array = [];
+        $categoryEntity = new CategoryEntity($searchValue);
+        $result =  $this->categoryRepository->search($categoryEntity);
+        foreach($result as $category){
+            $categoryEntity = new CategoryEntity($category->categoryName, $category->categoryDescription, $category->categoryImage, $category->categoryId);
+            $array[] = $categoryEntity;
+        }
+        return $array;
     }
 
 

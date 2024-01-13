@@ -55,7 +55,7 @@ component("author-sidebar");
                                 </td>
 
                                 <td class="2/12 py-2 px-4 border-b border-b-gray-300">
-                                    <img src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->wikiImage) ?>"
+                                    <img src="<?= STORAGE_PATH . ($wiki->wikiImage) ?>"
                                          alt="<?= $wiki->wikiTitle ?>"
                                          class="w-8 h-8 rounded object-cover block">
                                 </td>
