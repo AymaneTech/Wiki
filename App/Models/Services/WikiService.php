@@ -218,4 +218,8 @@ class WikiService
         $wikiEntity->__set("author", $author);
         return $wikiEntity;
     }
+    public function wikisCount(){
+        $wikiCount = $this->wikiRepository->wikisCount();
+        return $wikiCount->count;
+    }
 }

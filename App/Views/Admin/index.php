@@ -13,47 +13,34 @@ component("admin-header");
                 <div class="flex justify-between mb-4">
                     <div>
                         <div class="flex items-center mb-1">
-                            <div class="text-2xl font-semibold">324</div>
+                            <div class="text-2xl font-semibold"><?=$userCount?></div>
                         </div>
                         <div class="text-sm font-medium text-gray-400">Total of Users</div>
                     </div>
 
                 </div>
                 <div class="flex items-center">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
-                    <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded-full object-cover block -ml-3">
+                    <?php for ($i = 0; $i < min(10, count($users)); $i++){ ?>
+                        <img src="<?= STORAGE_PATH . $users[$i]->__get("userImage")?>" alt="" class="w-8 h-8 rounded-full object-cover block">
+                    <?php }?>
                 </div>
             </div>
             <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                 <div class="flex justify-between mb-6">
                     <div>
-                        <div class="text-2xl font-semibold mb-1">10</div>
+                        <div class="text-2xl font-semibold mb-1"><?=$categoryCount?></div>
                         <div class="text-sm font-medium text-gray-400">Total of Categories</div>
                     </div>
                 </div>
-                <div class="flex items-center">
-                    <div class="w-full bg-gray-100 rounded-full h-4">
-                        <div class="h-full bg-blue-500 rounded-full p-1" style="width: 60%;">
-                            <div class="w-2 h-2 rounded-full bg-white ml-auto"></div>
-                        </div>
-                    </div>
-                    <span class="text-sm font-medium text-gray-600 ml-4">60%</span>
-                </div>
             </div>
             <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                 <div class="flex justify-between mb-6">
                     <div>
-                        <div class="text-2xl font-semibold mb-1"><span
-                                    class="text-base font-normal text-gray-400 align-top">&dollar;</span>2,345
-                        </div>
+                        <div class="text-2xl font-semibold mb-1"><?=$wikiCount?></div>
                         <div class="text-sm font-medium text-gray-400">Total wikis</div>
                     </div>
 
                 </div>
-                <a href="#" class="text-blue-500 font-medium text-sm hover:text-blue-600">View details</a>
             </div>
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -89,7 +76,6 @@ component("admin-header");
                             <td class="py-2 px-4 border-b border-b-gray-50">
                                 <span class="text-[13px] font-medium text-gray-400"><?=$user->__get("email")?></span>
                             </td>
-
                         </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -123,11 +109,11 @@ component("admin-header");
                                     <img src="<?php STORAGE_PATH. $wiki->__get("wikiImage") ?>>" alt=""
                                          class="w-8 h-8 rounded object-cover block">
                                     <a href="#"
-                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate"><?=$wiki->__get("wikiTitle")?></a>
+                                       class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate"><?= mb_strimwidth($wiki->__get("wikiTitle"), 0, 20, "...")?></a>
                                 </div>
                             </td>
                             <td class="py-2 px-4 border-b border-b-gray-50">
-                                <span class="text-[13px] font-medium text-gray-400"><?=$wiki->__get("category")->__get("categoryName")?></span>
+                                <span class="text-[13px] font-medium text-gray-400"><?= mb_strimwidth($wiki->__get("category")->__get("categoryName"), 0, 40, "...")  ?></span>
                             </td>
                             <td class="py-2 px-4 border-b border-b-gray-50">
                                 <div class="time font-medium text-gray-500">

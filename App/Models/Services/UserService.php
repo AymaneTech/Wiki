@@ -42,4 +42,8 @@ class userService
         }
         return $array;
     }
+    public function usersCount(){
+        $userCount = $this->userRepository->usersCount();
+        return $userCount->count;
+    }
 }

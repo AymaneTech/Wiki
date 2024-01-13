@@ -91,4 +91,9 @@ class WikiRepository extends \App\Core\Model
         $this->update($data, $condition);
     }
 
+    public function wikisCount()
+    {
+        return $this->count();
+    }
+
 }

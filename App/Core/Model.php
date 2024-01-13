@@ -155,5 +155,9 @@ abstract class Model
     {
         return $this->dbh->lastInsertId();
     }
+    public function count (){
+        $stmt = $this->dbh->query("SELECT count(*) as count FROM {$this->tableName}");
+        return $stmt->fetch();
+    }
 
 }

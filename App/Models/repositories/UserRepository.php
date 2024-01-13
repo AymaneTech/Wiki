@@ -40,4 +40,9 @@ class UserRepository extends \App\Core\Model
     {
         return $this->getAll();
     }
+
+    public function usersCount()
+    {
+        return $this->count();
+    }
 }

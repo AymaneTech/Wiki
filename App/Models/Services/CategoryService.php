@@ -63,6 +63,10 @@ class CategoryService
         }
         return $array;
     }
+    public function categoriesCount(){
+        $categoryCount = $this->categoryRepository->categoriesCount();
+        return $categoryCount->count;
+    }
 
 
 }

@@ -56,4 +56,9 @@ class CategoryRepository extends Model
         $searchValue = $categoryEntity->__get("categoryName");
         return $this->searchByColumn("categoryName", $searchValue);
     }
+
+    public function categoriesCount()
+    {
+        return $this->count();
+    }
 }

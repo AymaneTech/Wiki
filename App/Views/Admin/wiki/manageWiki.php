@@ -46,46 +46,40 @@ component('head');
                             <tr>
                                 <td class="1/12 py-2 px-4 border-b border-b-gray-300">
                                         <span class="text-[13px] font-medium text-gray-800">
-                                            <?= $wiki->wikiId ?>
+                                            <?= $wiki->__get("wikiId") ?>
                                         </span>
                                 </td>
 
                                 <td class="2/12 py-2 px-4 border-b border-b-gray-300">
-                                    <img src="data:image/jpg;charset=utf8;base64,<?= base64_encode($wiki->wikiImage) ?>"
-                                         alt="<?= $wiki->wikiTitle ?>"
+                                    <img src="<?= STORAGE_PATH . $wiki->__get("wikiImage") ?>"
+                                         alt="<?= $wiki->__get("wikiTitle") ?>"
                                          class="w-8 h-8 rounded object-cover block">
                                 </td>
                                 <td class="w-1/12 py-2 px-4 border-b border-b-gray-300">
                                     <p class="text-[13px] text-gray-900 text-sm hover:text-blue-500 ml-2 truncate">
-                                        <?= $wiki->wikiTitle ?>
+                                        <?= $wiki->__get("wikiTitle") ?>
                                     </p>
                                 </td>
 
                                 <td class="w-3/12 py-2 px-4 border-b border-b-gray-300">
                                         <span class="text-[13px] font-medium text-gray-800">
-                                            <?= $wiki->wikiDescription ?>
+                                            <?= mb_strimwidth($wiki->__get("wikiDescription"), 0, 70, "...") ?>
                                         </span>
                                 </td>
                                 <td class="1/12 py-2 px-4 border-b border-b-gray-300">
                                         <span class="text-[13px] font-medium text-gray-800">
-                                            <?= $wiki->author->username ?>
+                                            <?= $wiki->__get("author")->username ?>
                                         </span>
                                 </td>
 
                                 <td class="w-2/12 py-2 px-4 border-b border-b-gray-300">
                                     <div class="flex items-center gap-4">
-                                        <form action="<?= APP_URL ?>categories/edit" method="post">
-                                            <input type="hidden" name="editId" value="<?= $wiki->wikiId ?>">
-                                            <button class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                                                Check
-                                            </button>
-                                        </form>
-
+                                        <a href="http://localhost/wiki/singleWiki/<?=$wiki->__get("wikiId")?>" class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">check </a>
                                         <form action="<?= APP_URL ?>wikis/archive" method="post">
-                                            <input type="hidden" name="id" value="<?= $wiki->wikiId ?>">
+                                            <input type="hidden" name="id" value="<?= $wiki->__get("wikiId") ?>">
                                             <?php
-                                            $wiki->isArchived = (int)$wiki->isArchived;
-                                            if ($wiki->isArchived !== 1) {
+                                            $wiki->__set("isArchived",  (int)$wiki->__get("isArchived"));
+                                            if ($wiki->__get("isArchived") !== 1) {
                                                 ?>
                                                 <button name="archivedId" class="py-2 px-4 bg-red-500 text-white font-semibold rounded-xl shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
                                                     Archive

@@ -10,9 +10,10 @@
         <li class="text-gray-600 mr-2 font-medium">Analytics</li>
     </ul>
     <ul class="ml-auto flex items-center">
+        <b class="mr-6">Hello <?=user_session("username")?></b>
         <li class="dropdown ml-3">
             <button type="button" class="dropdown-toggle flex items-center">
-                <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded block object-cover align-middle">
+                <img src="<?=STORAGE_PATH . user_session("userImage")?>>" alt="" class="w-8 h-8 rounded block object-cover align-middle">
             </button>
             <ul class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
                 <li>
