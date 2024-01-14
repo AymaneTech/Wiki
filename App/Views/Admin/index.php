@@ -106,7 +106,7 @@ component("admin-header");
                         <tr>
                             <td class="py-2 px-4 border-b border-b-gray-50">
                                 <div class="flex items-center">
-                                    <img src="<?php STORAGE_PATH. $wiki->__get("wikiImage") ?>>" alt=""
+                                    <img src="<?= STORAGE_PATH. $wiki->__get("wikiImage") ?>" alt=""
                                          class="w-8 h-8 rounded object-cover block">
                                     <a href="#"
                                        class="text-gray-600 text-sm font-medium hover:text-blue-500 ml-2 truncate"><?= mb_strimwidth($wiki->__get("wikiTitle"), 0, 20, "...")?></a>
