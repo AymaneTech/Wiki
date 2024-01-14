@@ -53,14 +53,14 @@ class WikiService
         }
         return $array;
     }
-    public function search($searchValue){
+
+    public function getLatestWikis(){
         $array = [];
-        $wikiEntity = new WikiEntity($searchValue);
-        $wikiEntity->__set("wikiTitle", $searchValue);
-        $result =  $this->wikiRepository->search($wikiEntity);
-        foreach($result as $wiki){
+        $wikis = $this->wikiRepository->getReversedWikis();
+        foreach ($wikis as $wiki) {
             $categoryEntity = new CategoryEntity();
             $authorEntity = new UserEntity();
+
             $array = $this->getArray($categoryEntity, $wiki, $authorEntity, $array);
         }
         return $array;
@@ -155,8 +155,18 @@ class WikiService
         }
         return $array;
     }
-
-
+    public function search($searchValue){
+        $array = [];
+        $wikiEntity = new WikiEntity($searchValue);
+        $wikiEntity->__set("wikiTitle", $searchValue);
+        $result =  $this->wikiRepository->search($wikiEntity);
+        foreach($result as $wiki){
+            $categoryEntity = new CategoryEntity();
+            $authorEntity = new UserEntity();
+            $array = $this->getArray($categoryEntity, $wiki, $authorEntity, $array);
+        }
+        return $array;
+    }
     public function archiveWiki($id)
     {
         $wikiEntity = new WikiEntity();
@@ -207,5 +217,9 @@ class WikiService
         $wikiEntity->__set("category", $category);
         $wikiEntity->__set("author", $author);
         return $wikiEntity;
+    }
+    public function wikisCount(){
+        $wikiCount = $this->wikiRepository->wikisCount();
+        return $wikiCount->count;
     }
 }

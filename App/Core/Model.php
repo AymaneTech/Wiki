@@ -59,6 +59,16 @@ abstract class Model
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getReversed(){
+        try {
+            $columns = implode(",", $this->columns);
+            $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 ORDER BY createdAt DESC LIMIT 3");
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }catch(PDOException $e){
+            die("error in fetching reverse (model) =>  ".$e->getMessage());
+        }
+    }
+
     protected function save($data)
     {
         try {
@@ -144,6 +154,10 @@ abstract class Model
     public function lastInsertId()
     {
         return $this->dbh->lastInsertId();
+    }
+    public function count (){
+        $stmt = $this->dbh->query("SELECT count(*) as count FROM {$this->tableName}");
+        return $stmt->fetch();
     }
 
 }

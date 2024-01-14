@@ -52,8 +52,12 @@
                                         Log in
                                     </button>
                                 </div>
+                                <div class="text-sm inline-block my-64">
+                                    don't have an account <a class="text-blue-500 font-bold" href="<?=APP_URL?>users/register">create one</a>
+                                </div>
                             </div>
                         </form>
+
                         <?= (isset($_SESSION["error"])) ? "<p class='text-red-500 font-bold flex justify-center transition-opacity duration-500 ease-in-out opacity-100'>" . $_SESSION["error"] . "</p>" : ""; ?>
 
                     </div>

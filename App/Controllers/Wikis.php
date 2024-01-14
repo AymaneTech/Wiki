@@ -11,7 +11,9 @@ class Wikis extends Controller
     public function __construct()
     {
        $this->wikiService = $this->service('WikiService');
-
+    }
+    public function index(){
+        redirect("home");
     }
     public function manageWiki ($id = 1){
         $categories = $this->service('CategoryService');
@@ -35,7 +37,7 @@ class Wikis extends Controller
     }
     public function delete(){
             $this->wikiService->deleteWiki(post("deleteId"));
-           echo "<script>window.location.replace('http://localhost/wiki/home/dashboard')</script>";
+           echo "<script>window.location.replace('http://localhost/wiki/home/authorDashboard')</script>";
     }
     public function edit($id){
         $categories = $this->service('CategoryService');

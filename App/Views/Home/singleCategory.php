@@ -2,6 +2,7 @@
 extract($data, EXTR_SKIP);
 component("head");
 isLoggedIn() ? component("author-header") : component("visitor-header");
+if(count($wikis) > 0){
 ?>
 
 <div class="wikis-parent flex flex-col mx-auto md:w-2/3 gap-4">
@@ -35,3 +36,5 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
         </article>
     <?php endforeach; ?>
 </div>
+<?php }else { component("nodatafound"); }?>
+<?php component("footer") ?>

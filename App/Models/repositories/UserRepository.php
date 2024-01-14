@@ -35,4 +35,14 @@ class UserRepository extends \App\Core\Model
         $result = $this->findByColumn("userId", $id);
         return $result[0];
     }
+
+    public function getUsers()
+    {
+        return $this->getAll();
+    }
+
+    public function usersCount()
+    {
+        return $this->count();
+    }
 }

@@ -19,12 +19,14 @@ class Home extends \App\Core\Controller
         $wikis = $this->service('WikiService');
         $allwikis = $wikis->getPagination(1);
         if ($id !== 0) {
+            if(is_int($id)) {
             $allwikis = $wikis->getPagination($id);
+            }
         }
         $randomCategories = $categories->getCategories();
         shuffle($randomCategories);
         $randomCategories = array_slice($randomCategories, 0, 3);
-        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wikis" => $allwikis, "randomCategories" => $randomCategories];
+        $data = ["tags" => $tags->getTags(), "categories" => $categories->getCategories(), "wikis" => $allwikis, "latestWikis" => $wikis->getLatestWikis(), "randomCategories" => $randomCategories];
         $this->view("home/index", $data);
     }
 

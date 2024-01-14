@@ -2,7 +2,8 @@
   "name": "aymanetwill/wiki",
   "require": {
     "ext-pdo": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-mbstring": "*"
   },
   "autoload": {
     "files": [

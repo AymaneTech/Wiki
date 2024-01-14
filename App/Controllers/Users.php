@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Services\userService;
 use App\Helpers\Functions as f;
 use App\Helpers\Input;
+
 class Users extends \App\Core\Controller
 {
     private $userService;
@@ -21,10 +22,14 @@ class Users extends \App\Core\Controller
             $result = filterInput($_POST);
             $user = $this->userService->login($result["data"]);
             if (!is_object($user) && isset($_SESSION["error"])) {
-                $this->view("Auth/login");
+                echo "<script>window.location.replace('http://localhost/wiki/users/login')</script>";
             } else {
                 unset($_SESSION["error"]);
-                echo "<script>window.location.replace('http://localhost/wiki/home')</script>";
+                if (isAdmin()) {
+                    echo "<script>window.location.replace('http://localhost/wiki/dashboard')</script>";
+                }else {
+                    echo "<script>window.location.replace('http://localhost/wiki/home')</script>";
+                }
             }
         }
     }
@@ -53,7 +58,9 @@ class Users extends \App\Core\Controller
             echo "<script>window.location.replace('http://localhost/wiki/users/login')</script>";
         }
     }
-    public function logout(){
+
+    public function logout()
+    {
         logout();
     }
 }

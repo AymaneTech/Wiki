@@ -7,21 +7,21 @@ use App\Models\entities\UserEntity;
 
 class userService
 {
-    private userRepository $user;
+    private userRepository $userRepository;
 
     public function __construct()
     {
-        $this->user = new UserRepository();
+        $this->userRepository = new UserRepository();
     }
     public function register($data)
     {
         $userEntity = new UserEntity($data["email"], $data["password"], $data["username"], isset($data["image"])?$data["image"]: null);
-        $this->user->register($userEntity);
+        $this->userRepository->register($userEntity);
     }
     public function login($data)
     {
         $userEntity = new UserEntity($data["email"], $data["password"]);
-        $result = $this->user->login($userEntity);
+        $result = $this->userRepository->login($userEntity);
         if (!is_object($result) && $result == 0) {
             return $_SESSION['error'] = "There is no account with this email address";
         }
@@ -29,7 +29,23 @@ class userService
             return $_SESSION['error'] = "incorrect password";
         }else {
             $_SESSION['user'] = $result;
-            return $result;
+            if($result->role == 1){
+                $_SESSION['isAdmin'] = 1;
+            }
         }
+    }
+    public function getUsers() {
+        $array = [];
+        $users = $this->userRepository->getUsers();
+        foreach ($users as $user){
+            $userEntity = new UserEntity($user->email, $user->password, $user->username, $user->userImage);
+            $userEntity->__set("userId", $user->userId);
+            $array[] = $userEntity;
+        }
+        return $array;
+    }
+    public function usersCount(){
+        $userCount = $this->userRepository->usersCount();
+        return $userCount->count;
     }
 }

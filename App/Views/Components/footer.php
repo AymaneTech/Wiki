@@ -3,7 +3,7 @@
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
                 <a href="https://localhost/opep_v3/public/client/" class="flex items-center">
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap">O'PEP</span>
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap">Wiki</span>
                 </a>
             </div>
             <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -44,7 +44,7 @@
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div class="sm:flex sm:items-center sm:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center">© 2022 <a href="https://flowbite.com" class="hover:underline">Aymane el maini™</a>. All Rights Reserved.
+            <span class="text-sm text-gray-500 sm:text-center">Created by <a href="https://aymanetech.vercel.app/" class="hover:underline">Aymane el maini™</a>With <span class="text-red-700 text-3xl">&hearts;</span>
             </span>
             <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                 <a href="#" class="text-gray-500 hover:text-gray-900">
