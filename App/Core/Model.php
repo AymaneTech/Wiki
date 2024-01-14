@@ -37,7 +37,7 @@ abstract class Model
             $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName}");
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
-            die("error in selecting" . $e->getMessage());
+            die("error in selecting" . __CLASS__ . $e->getMessage());
         }
     }
 
@@ -59,13 +59,14 @@ abstract class Model
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getReversed(){
+    public function getReversed()
+    {
         try {
             $columns = implode(",", $this->columns);
-            $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 ORDER BY createdAt DESC LIMIT 3");
+            $stmt = $this->dbh->query("SELECT {$columns} FROM {$this->tableName} WHERE isArchived = 0 ORDER BY createdAt, updatedAt DESC LIMIT 3");
             return $stmt->fetchAll(PDO::FETCH_OBJ);
-        }catch(PDOException $e){
-            die("error in fetching reverse (model) =>  ".$e->getMessage());
+        } catch (PDOException $e) {
+            die("error in fetching reverse (model) =>  " . $e->getMessage());
         }
     }
 
@@ -81,6 +82,7 @@ abstract class Model
             die("error in selecting" . $e->getMessage());
         }
     }
+
     protected function delete($column, $value)
     {
         try {
@@ -155,7 +157,9 @@ abstract class Model
     {
         return $this->dbh->lastInsertId();
     }
-    public function count (){
+
+    public function count()
+    {
         $stmt = $this->dbh->query("SELECT count(*) as count FROM {$this->tableName}");
         return $stmt->fetch();
     }

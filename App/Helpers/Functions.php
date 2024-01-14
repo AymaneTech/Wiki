@@ -25,14 +25,10 @@ function checkString($string): bool
 
 function checkPasswords($password, $passwordConfirmation): bool
 {
-    if ($password === $passwordConfirmation) {
-        return true;
-    } else {
-        return false;
-    }
+    return $password === $passwordConfirmation;
 }
 
-function getImage($file)
+function getImage($file): array
 {
     $errors = [];
     $allowed_ext = ["jpg", "jpeg", "png"];
@@ -54,8 +50,6 @@ function getImage($file)
         "name" => $filename,
         "errors" => $errors
     ];
-
-
 }
 
 function filterInput($inputData): array
