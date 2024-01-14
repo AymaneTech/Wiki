@@ -32,8 +32,8 @@ function displayResponse(data) {
     console.log(data);
     let wikisData = data[0];
     let categoriesData = data[1];
+    if (wikisData.length >  0) {
     mainContainer.innerHTML = '<h3 class="text-3xl font-bold my-4 mt-12 mx-auto">Result of wikies</h3>'
-    if (wikisData.length >= 0) {
         wikisData.forEach((item) => {
             mainContainer.innerHTML += `
         <article class="custom-card p-4 flex flex-col md:flex-row bg-white shadow-lg rounded-lg mx-4 max-w-md md:max-w-full overflow-hidden">
@@ -56,15 +56,13 @@ function displayResponse(data) {
                         <a href="http://localhost/wiki/singleWiki/${item.wikiId}" class="w-fit px-8 text-white bg-gray-900 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2">
                             <span>Read Wiki</span>
                         </a>
-                    </div>
                 </div>
+                    </div>
                 <div class="flex-shrink-0">
                     <img class="w-48 h-48 md:w-64 md:h-64 rounded-lg object-cover" src="storage/${item.wikiImage}" alt="wiki-image">
                 </div>
             </article>`;
         });
-    } else {
-        mainContainer.innerHTML = '<h3 class="text-3xl text-center font-bold my-4 mt-12 mx-auto">No wiki found with this name</h3>'
     }
         mainContainer.innerHTML += "<h3 class='text-3xl font-bold my-4 mt-12 mx-auto'>Result of Categories</h3>";
     if (categoriesData.length > 0) {
