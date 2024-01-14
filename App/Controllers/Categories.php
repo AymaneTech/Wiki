@@ -14,11 +14,14 @@ class Categories extends Controller
     {
         $this->categoryService = $this->service("CategoryService");
     }
-
     public function index()
     {
         $data = $this->categoryService->getCategories();
         $this->view("Admin/Category/index", $data);
+    }
+    public function allCategories(){
+        $data = ["categories" => $this->categoryService->getCategories()];
+        $this->view("home/wikis/categories", $data);
     }
 
     public function create()

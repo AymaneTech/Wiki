@@ -7,14 +7,13 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
         <section class="container md:mx-auto py-32">
             <div class="parent flex justify-between">
                 <div class="left w-[40vw] flex flex-col gap-8">
-                    <h1 class="text-6xl font-bold">g
-                        Spark, Evolve,Conquer: Path to Personal Exellence
+                    <h1 class="text-6xl font-bold">
+                        Your Pen, Your Power: Explore on Wiki
                     </h1>
                     <p class="text-gray-700 mt-4">
-                        I’m actually starting a newsletter. In this newsletter, I’ll be focusing on web design and user
-                        interface topics. You can expect to find tutorials, guides, best practices, design ideas
+                        Empower your voice at [Your Website Name]. Share insights, tell stories, and contribute to a vibrant community of writers. Your words shape knowledge, inspire minds, and fuel the spirit of discovery
                     </p>
-                    <a class="w-fit px-8 text-white bg-gray-900 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2">Hello</a>
+                    <a href="<?=APP_URL?>users/login" class="w-fit px-8 text-white bg-gray-900 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-2xl text-sm px-5 py-2.5 me-2 mb-2">Get Started</a>
                 </div>
                 <div class="right w-[30vw] h-[80vh]">
                     <img class="max-h-full" src="assets/img/hero.jpg" alt="">
@@ -44,7 +43,7 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
                             </p>
                         <div class="p-6 pt-0">
                         </div>
-                            <a href="<?= APP_URL ?>singleWiki/<?= $wiki->__get("wikiId") ?>" class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
+                            <a href="<?= APP_URL ?>singleWiki/<?= $wiki->__get("wikiId") ?>" class="align-middle absolute bottom-5 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none" type="button">
                                 Read Article
                             </a>
                         </div>
@@ -55,7 +54,7 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
         <div class="categories-section">
             <div class="section-title flex justify-between items-center">
                 <h2 class="recent-blogs text-4xl font-bold my-12">The Popular Categories</h2>
-                <a href="">See All Categories
+                <a href="<?=APP_URL?>categories/allcategories">See All Categories
                     <i class='bx bx-right-arrow-alt'></i>
                 </a>
             </div>
@@ -89,7 +88,7 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
                         class="custom-card p-4 flex flex-col md:flex-row bg-white shadow-lg rounded-lg mx-4 max-w-md md:max-w-full overflow-hidden">
                     <div class="md:mr-6 h-fit">
                         <img class="w-16 h-16 md:w-24 md:h-24 rounded-full object-cover shadow"
-                             src="<?= STORAGE_PATH . $wiki->author->userImage ?>" alt="avatar">
+                             src="<?= STORAGE_PATH . $wiki->__get("author")->__get("userImage") ?>" alt="avatar">
                     </div>
                     <div class="flex-1 flex flex-col justify-between py-6 px-4">
                         <div>
@@ -118,6 +117,6 @@ isLoggedIn() ? component("author-header") : component("visitor-header");
             <?php endforeach; ?>
         </div>
     </main>
+<?php component("footer") ?>
+<?php component("scripts") ?>
 
-
-<?php require_once APP_ROOT . "/Views/Components/scripts.php" ?>

@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 use App\Core\Controller;
-checkAdminPermission();
 class Dashboard extends Controller
 {
     private $userService;

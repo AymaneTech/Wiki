@@ -10,7 +10,7 @@ component("author-sidebar");
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 min-h-screen transition-all main">
     <div class="p-6">
         <div class="gap-6 mb-6">
-            <h1 class="text-center font-bold text-3xl">Welcome to your space</h1>
+            <h1 class="text-center font-bold text-3xl my-4">Welcome to your space</h1>
             <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                 <div class="flex justify-between mb-4 items-start">
                     <div class="font-medium">Your Wikis</div>
@@ -20,6 +20,7 @@ component("author-sidebar");
                             Wiki</a>
                     </div>
                 </div>
+                <?php if(count($wikis)){ ?>
                 <div class="overflow-x-auto">
                     <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
                         <thead>
@@ -103,7 +104,7 @@ component("author-sidebar");
         </div>
     </div>
 </main>
-<!-- end: Main -->
+<?php } else { component("nodatafound");} ?>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="<?= APP_URL ?>/public/assets/js/dashboard.js"></script>
