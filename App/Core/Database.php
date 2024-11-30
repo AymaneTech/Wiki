@@ -1,7 +1,7 @@
 <?php
 namespace App\Core;
+
 use PDO;
-use PDOException;
 class Database
 {
     private static $instance = null;
@@ -11,6 +11,7 @@ class Database
     private $password = DB_PASSWORD;
     private $dbname = DB_NAME;
     private $dbh;
+
     private function __construct()
     {
         $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->dbname;
@@ -21,11 +22,13 @@ class Database
         );
         $this->dbh = new PDO($dsn, $this->user, $this->password, $options);
     }
+
     public static function getInstance()
     {
         if (self::$instance === null) { self::$instance = new Database; }
         return self::$instance;
     }
+    
     public function connect() { return $this->dbh; }
 }
 

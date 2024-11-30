@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Models\Services;
-use App\Models\repositories\Tag;
+
 use App\Models\entities\TagEntity;
+use App\Models\repositories\TagRepository;
+
 class TagService
 {
     private $tag;
     public function __construct(){
-        $this->tag = new Tag();
+        $this->tag = new TagRepository();
     }
     public function saveTag($tag){
         $tagEntity = new TagEntity($tag["tagName"]);

@@ -6,7 +6,7 @@ use App\Core\Model;
 use App\Models\Entities\TagEntity;
 use App\Helpers\Functions;
 
-class Tag extends Model
+class TagRepository extends Model
 {
     public function __construct()
     {
